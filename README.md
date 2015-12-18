@@ -13,19 +13,16 @@ Gdansk_harmonogram_odb_odpadow
 
 Gdansk_zuzyte_baterie
 
-Gdansk_komunikacja_miejska
-
  
 
 
-### How do I get set up? ###
+### Jak działamy? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+3 Aktywnośći
+
+1. Główny widok z informacjami Kiedy wywóż śmieci suchych i śmieci mokrych.
+2. Aktywność ustawień(konieczność ustawienia nazwy ulicy, ustawienie jakie powiadomienia mają przychodzić do użytkownika i jak wcześnie)
+3. Moduł odpowiedzialny za połączenie nazwy ulicy i pobranie informacji o śmieciach mokrych oraz suchych. Zapisanie tej informacji w shared preferences.  
 
 ### Contribution guidelines ###
 
