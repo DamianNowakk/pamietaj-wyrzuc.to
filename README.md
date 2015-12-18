@@ -2,9 +2,7 @@
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
-### What is this repository for? ###
-
-API 
+### API ###
 Login do środowiska API dla zespołu: ciecimi
 Hatło: v78moUzE
 
