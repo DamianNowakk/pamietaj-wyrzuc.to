@@ -18,10 +18,6 @@ Gdansk_komunikacja_miejska
  
 
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
 ### How do I get set up? ###
 
 * Summary of set up
