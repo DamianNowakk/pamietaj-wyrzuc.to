@@ -20,7 +20,7 @@ Gdansk_zuzyte_baterie
 
 3 aktywnośći
 
-1. Główny widok z informacjami Kiedy wywóz śmieci suchych i śmieci mokrych.
+1. Główny widok z informacjami Kiedy wywóz śmieci suchych i śmieci mokrych.("Ładne gui" i pobranie informacji z shared preferences)
 2. Aktywność ustawień(konieczność ustawienia nazwy ulicy, ustawienie jakie powiadomienia mają przychodzić do użytkownika i jak wcześnie)
 3. Moduł odpowiedzialny za połączenie nazwy ulicy i pobranie informacji o śmieciach mokrych oraz suchych. Zapisanie tej informacji w shared preferences.  
 
