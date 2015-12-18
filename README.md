@@ -18,9 +18,9 @@ Gdansk_zuzyte_baterie
 
 ### Jak działamy? ###
 
-3 Aktywnośći
+3 aktywnośći
 
-1. Główny widok z informacjami Kiedy wywóż śmieci suchych i śmieci mokrych.
+1. Główny widok z informacjami Kiedy wywóz śmieci suchych i śmieci mokrych.
 2. Aktywność ustawień(konieczność ustawienia nazwy ulicy, ustawienie jakie powiadomienia mają przychodzić do użytkownika i jak wcześnie)
 3. Moduł odpowiedzialny za połączenie nazwy ulicy i pobranie informacji o śmieciach mokrych oraz suchych. Zapisanie tej informacji w shared preferences.  
 
