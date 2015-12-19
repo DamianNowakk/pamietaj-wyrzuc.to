@@ -26,7 +26,7 @@ Gdansk_zuzyte_baterie
 Zrobiłem(mikos).Jezeli miałby coś zmieniać to fajnie by było, gdyby ulice rozwijały się z listy. Uniknelibysmy wtedy możliwośći że użytkownik się pomylił w czasie wpisywanie nazwy. 
 Nazwy shared preferances:
 * POWIADOMIENIA_WYSTAWKI - True lub False, określa czy kotś chce otrzymawać powiadomienia o wystawkach
-* POWIADOMIENIA_WYSTAWKI_CZAS - 7,6,5,4,2, określa ile dni wcześniej użytkwonik ma dostać powiadomienie o wystawce
+* POWIADOMIENIA_WYSTAWKI_CZAS - 7,6,5,4,2,0 określa ile dni wcześniej użytkwonik ma dostać powiadomienie o wystawce
 * ULICA_NUMER - liczba,numer ulicy
 * ULICA_NAZWA - string, nazwa ulicy
 * RODZAJ_ZABUDOWY - 0(jednorodzinna), 1(wielorodzinna), rodzaj zabudowy       
