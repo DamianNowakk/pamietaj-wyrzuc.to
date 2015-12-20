@@ -38,7 +38,7 @@ public class RestClient {
         client.setBasicAuth("ciecimi","v78moUzE");
     }
     public void getSomething(){
-        client.get("https://api.bihapi.pl/dane/gdansk?resource=bc14ab19-621d-4607-9689-90a61d13ee4b&q=%22WYSPA%20SOBIESZEWSKA%22", new JsonHttpResponseHandler() {
+        client.get("https://api.bihapi.pl/dane/gdansk?resource=bc14ab19-621d-4607-9689-90a61d13ee4b&filters={%22Ulica_nazwa_skr%C3%B3cona%22:%20%22Akwenowa%22}2", new JsonHttpResponseHandler() {
 
             @Override
             public void onStart() {
