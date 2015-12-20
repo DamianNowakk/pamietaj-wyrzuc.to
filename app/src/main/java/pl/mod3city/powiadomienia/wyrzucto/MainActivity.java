@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.json.JSONObject;
+import org.json.*;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -31,7 +31,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //Tutaj pobierasz dane do przetworzenia
-        //JSONObject obiekt = RestClient.getInstance().getJson();
+        JSONObject obiekt = RestClient.getInstance().getJson();
+        try {
+            JSONArray arr = obiekt.getJSONArray("properties");
+            String[] tab = new String[1000];
+            for(int i=0; i<arr.length();i++){
+                tab[i] = arr.getJSONObject(i).toString();
+            }
+
+
+        } catch (JSONException e){}
 
     }
 
