@@ -8,6 +8,8 @@
 # Java class files
 *.class
 
+.idea/
+
 # Generated files
 bin/
 gen/
@@ -15,6 +17,10 @@ gen/
 # Gradle files
 .gradle/
 build/
+
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
 
 # Local configuration file (sdk path, etc)
 local.properties
