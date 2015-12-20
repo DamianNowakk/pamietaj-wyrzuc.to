@@ -29,6 +29,23 @@
         <item>1</item>
     </string-array>
 
+    <string name="pref_title_dzielnica">Dzielnica zamieszkania</string>
+    <string-array name="pref_list_dzielnica">
+      <item>Wyspa Sobieszewska, Krakowiec-Górki Zachodnie, Rudniki, Olszynka, Orunia- Św.Wojciech-Lipce, Chełm, Wzgórze Mickiewicza</item>
+        <item>Stogi, Przeróbka, Nowy Port, Letnica, Młyniska, Śródmieście</item>
+        <item>Brzeźno, Wrzeszcz Dolny, Wrzeszcz Górny, Aniołki, Strzyża</item>
+        <item>Przymorze Wielkie, Przymorze Małe, Zaspa Młyniec, Zaspa Rozstaje</item>
+        <item>Żabianka-Wejhera-Jelitkowo-Tysiąclecia, Oliwa, Osowa, Matarnia, Kokoszki, Jasień</item>
+        <item>VII Dwór, Brętowo, Piecki-Migowo, Suchanino, Siedlce, Ujeścisko-Łostowice</item>
+    </string-array>
+    <string-array name="pref_list_values_dzielnica">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
     <!-- Example settings for Data & Sync -->
     <string name="pref_header_data_sync">Dane i  synchronizacja</string>
 

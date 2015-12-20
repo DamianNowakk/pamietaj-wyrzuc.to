@@ -192,6 +192,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             bindPreferenceSummaryToValue(findPreference("ULICA_NAZWA"));
             bindPreferenceSummaryToValue(findPreference("ULICA_NUMER"));
             bindPreferenceSummaryToValue(findPreference("RODZAJ_ZABUDOWY"));
+            bindPreferenceSummaryToValue(findPreference("DZIELNICA"));
         }
 
         @Override
