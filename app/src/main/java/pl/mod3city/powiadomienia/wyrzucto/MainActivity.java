@@ -30,10 +30,11 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        RestClient.getInstance().getJson();
+
         //Tutaj pobierasz dane do przetworzenia
-        JSONObject obiekt = RestClient.getInstance().getJson();
-<<<<<<< HEAD
-=======
+       /* JSONObject obiekt = RestClient.getInstance().getJson();
         try {
             JSONArray arr = obiekt.getJSONArray("properties");
             String[] tab = new String[1000];
@@ -43,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         } catch (JSONException e){}
->>>>>>> da0eee006a17c30a5f97e65090e378940b7fa672
-
+*/
     }
 
     @Override

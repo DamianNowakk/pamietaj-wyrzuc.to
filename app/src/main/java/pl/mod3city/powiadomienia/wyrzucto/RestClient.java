@@ -1,6 +1,9 @@
 package pl.mod3city.powiadomienia.wyrzucto;
 import com.loopj.android.http.*;
 import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.security.KeyStore;
 
@@ -13,7 +16,7 @@ public class RestClient {
     private static RestClient ourInstance;
 
     private AsyncHttpClient client;
-    private JSONObject dane;
+    private JSONObject dane = new JSONObject();
 
     public static RestClient getInstance() {
         if(ourInstance == null) {
@@ -50,7 +53,31 @@ public class RestClient {
             public void onSuccess(int statusCode, Header[] headers, JSONObject json) {
                 Log.i("Debuggin", "getting response");
                 try {
-                    Log.i("Debuggin", "Response: " + json.toString());
+                    //Log.i("Debuggin", "Response: " + json.toString());
+                        try {
+
+                            JSONObject jsonnn = json.getJSONObject("results");
+                            JSONArray arr = jsonnn.getJSONArray("properties");
+                            String[] tab = new String[arr.length()];
+                            int licznik=0;
+                            for (int i = 0; i < arr.length(); i++) {
+                                if (arr.getJSONObject(i).getString("value").equals("x")) {
+                                    tab[licznik] = arr.getJSONObject(i).getString("key");
+                                    licznik++;
+                                }
+                            }
+
+                            String[] tabelaDni = new String[licznik];
+                            tabelaDni = tab;
+
+
+                            Log.i("Debuggin", "jestem tutaj");
+
+
+                        } catch (JSONException e) {
+                    }
+
+
                     dane = json;
                 } catch (Exception e) {
                     Log.i("Debuggin", "error");
@@ -73,7 +100,9 @@ public class RestClient {
 
     public JSONObject getJson(){
         getSomething();
+        Log.i("tag", dane.toString());
         return dane;
+
     }
 
 }
