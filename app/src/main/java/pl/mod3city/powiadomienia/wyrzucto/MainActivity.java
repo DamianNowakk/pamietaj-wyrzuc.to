@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //Tutaj pobierasz dane do przetworzenia
-        //JSONObject obiekt = RestClient.getInstance().getJson();
+        JSONObject obiekt = RestClient.getInstance().getJson();
 
     }
 
