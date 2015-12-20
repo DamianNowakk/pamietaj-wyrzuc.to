@@ -23,6 +23,7 @@ public class RestClient {
     }
     private RestClient() {
         client = new AsyncHttpClient();
+        dane = new JSONObject();
         //Sprawdzanie i ustanawianie certfikatu
         try{
             KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
@@ -50,8 +51,9 @@ public class RestClient {
             public void onSuccess(int statusCode, Header[] headers, JSONObject json) {
                 Log.i("Debuggin", "getting response");
                 try {
-                    Log.i("Debuggin", "Response: " + json.toString());
+                    int debuggin = Log.i("Debuggin", "Response: " + json.toString());
                     dane = json;
+                    getJson();
                 } catch (Exception e) {
                     Log.i("Debuggin", "error");
 
@@ -71,9 +73,8 @@ public class RestClient {
         });
     }
 
-    public JSONObject getJson(){
-        getSomething();
-        return dane;
+    public synchronized JSONObject getJson(){
+        return this.dane;
     }
 
 }

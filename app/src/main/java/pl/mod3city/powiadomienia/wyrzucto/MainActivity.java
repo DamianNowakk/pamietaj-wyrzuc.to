@@ -32,9 +32,8 @@ public class MainActivity extends AppCompatActivity {
         });
         //Tutaj pobierasz dane do przetworzenia
         JSONObject obiekt = RestClient.getInstance().getJson();
-<<<<<<< HEAD
-=======
-        try {
+
+/*        try {
             JSONArray arr = obiekt.getJSONArray("properties");
             String[] tab = new String[1000];
             for(int i=0; i<arr.length();i++){
@@ -42,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-        } catch (JSONException e){}
->>>>>>> da0eee006a17c30a5f97e65090e378940b7fa672
+        } catch (JSONException e){}*/
+
 
     }
 
