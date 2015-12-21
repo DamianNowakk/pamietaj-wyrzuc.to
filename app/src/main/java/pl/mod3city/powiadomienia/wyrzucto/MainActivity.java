@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         RestClient.getInstance().getJson();
 
         //Tutaj pobierasz dane do przetworzenia
-<<<<<<< HEAD
         JSONObject obiekt = RestClient.getInstance().getJson();
 
 /*        try {
@@ -53,12 +52,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e){}*/
 
 
-=======
-        } catch (JSONException e){}
-*/
->>>>>>> 93a7f3eec33ae473a11d3948acf92dec5f477a5a
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
