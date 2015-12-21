@@ -1,5 +1,7 @@
 package pl.mod3city.powiadomienia.wyrzucto;
 import com.loopj.android.http.*;
+
+import android.app.Activity;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -12,7 +14,11 @@ import cz.msebera.android.httpclient.Header;
 /**
  * Created by Mikołaj on 2015-12-20.
  */
-public class RestClient {
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+public class RestClient extends  Activity{
     private static RestClient ourInstance;
 
     private AsyncHttpClient client;
@@ -24,7 +30,7 @@ public class RestClient {
         }
         return ourInstance;
     }
-    private RestClient() {
+    private RestClient()  {
         client = new AsyncHttpClient();
         dane = new JSONObject();
         //Sprawdzanie i ustanawianie certfikatu
@@ -39,7 +45,7 @@ public class RestClient {
         }
 
         //Nazwa użytkownika i hasło do połączenia z serwerem, autoryzacja
-        client.setBasicAuth("ciecimi","v78moUzE");
+        client.setBasicAuth("ciecimi", "v78moUzE");
     }
 
 
@@ -54,9 +60,8 @@ public class RestClient {
             public void onSuccess(int statusCode, Header[] headers, JSONObject json) {
                 Log.i("Debuggin", "getting response");
                 try {
-<<<<<<< HEAD
+
                     int debuggin = Log.i("Debuggin", "Response: " + json.toString());
-=======
                     //Log.i("Debuggin", "Response: " + json.toString());
                         try {
 
@@ -73,8 +78,12 @@ public class RestClient {
 
                             String[] tabelaDni = new String[licznik];
                             tabelaDni = tab;
-
-
+                           TextView suche = (TextView)findViewById(R.id.odbiorSucheKazdy);
+                            suche.setText(tabelaDni[1]);
+                            TextView mokre = (TextView)findViewById(R.id.odbiorMokreKazdy);
+                            mokre.setText(tabelaDni[2]);
+                            ViewGroup vg = (ViewGroup) findViewById (R.id.fab);
+                            vg.refreshDrawableState();
                             Log.i("Debuggin", "jestem tutaj");
 
 
@@ -82,7 +91,6 @@ public class RestClient {
                     }
 
 
->>>>>>> 93a7f3eec33ae473a11d3948acf92dec5f477a5a
                     dane = json;
                     getJson();
                 } catch (Exception e) {
@@ -104,16 +112,11 @@ public class RestClient {
         });
     }
 
-<<<<<<< HEAD
-    public synchronized JSONObject getJson(){
-        return this.dane;
-=======
+
     public JSONObject getJson(){
         getSomething();
         Log.i("tag", dane.toString());
         return dane;
-
->>>>>>> 93a7f3eec33ae473a11d3948acf92dec5f477a5a
     }
 
 }
