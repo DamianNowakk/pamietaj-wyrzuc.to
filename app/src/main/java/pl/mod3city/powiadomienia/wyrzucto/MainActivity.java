@@ -34,8 +34,13 @@ public class MainActivity extends AppCompatActivity {
         RestClient.getInstance().getJson();
 
         //Tutaj pobierasz dane do przetworzenia
+        JSONObject obiekt = RestClient.getInstance().getJson();
+
+/*        try {
+=======
        /* JSONObject obiekt = RestClient.getInstance().getJson();
         try {
+>>>>>>> 93a7f3eec33ae473a11d3948acf92dec5f477a5a
             JSONArray arr = obiekt.getJSONArray("properties");
             String[] tab = new String[1000];
             for(int i=0; i<arr.length();i++){
@@ -43,10 +48,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-        } catch (JSONException e){}
-*/
-    }
+<<<<<<< HEAD
+        } catch (JSONException e){}*/
 
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
