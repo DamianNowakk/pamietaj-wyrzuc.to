@@ -53,7 +53,7 @@ public class JSONParser implements JsonResponse {
                     liczSuche++;
                 }
                 else if(dzien.contains("Mokre")){
-                    tabMokre[liczMokre] = dzien.substring(6)
+                    tabMokre[liczMokre] = dzien.substring(6);
                     liczMokre++;
                 }
                 else if(dzien.contains("Zmieszane")){
