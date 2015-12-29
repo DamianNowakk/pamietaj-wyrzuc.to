@@ -36,7 +36,6 @@ public class RestClient {
         }
         //Nazwa użytkownika i hasło do połączenia z serwerem, autoryzacja
         client.setBasicAuth("ciecimi", "v78moUzE");
-        client.setConnectTimeout(10000000);
     }
 
 
@@ -58,6 +57,14 @@ public class RestClient {
                     Log.i("Debuggin", "error");
                 }
             }
+
+            @Override
+            public void onFailure(int statusCode,Header[] headers, Throwable throwable, JSONObject errorResponse){
+                if(errorResponse != null) {
+                    callback.onJsonResponse(false, errorResponse);
+                }
+            }
+
             @Override
             public void onRetry(int retryNo) {
                 // called when request is retried
