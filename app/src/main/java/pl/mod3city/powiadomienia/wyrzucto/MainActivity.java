@@ -1,5 +1,6 @@
 package pl.mod3city.powiadomienia.wyrzucto;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import org.json.*;
 
@@ -23,30 +25,41 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Dymek z napisem
+        Context context = getApplicationContext();
+        CharSequence text = "Witaj!Aby odswieżyć widok naciśnij przycisk synchronizacji.";
+        int duration = Toast.LENGTH_LONG;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+        //Koniec dymku
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Pobieram dane z BIHAPI", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                //Po naciśnięciu różowego przycisku odświeżane są dane BIHAPI
+                RestClient.getInstance().getJson(new JsonResponse() {
+                    //Dzięki temu pieknemu zabiegowi, po pobraniu danych z Resta zostanie wywowołana poniższa metoda
+                    @Override
+                    public void onJsonResponse(boolean success, JSONObject response) {
+                        //Tu możemy parsować Json lub przekazać go do klasy JsonParser do dalszej obróbki
+                        Log.i("mainActivity", response.toString());
+                        //Wywołanie parsowania
+                        JSONParser parser = new JSONParser();
+                        if (success) {
+                            parser.parseJSONtoArray(response);
+                        }
+                    }
+                });
             }
         });
 
 
 
-        RestClient.getInstance().getJson(new JsonResponse() {
-            //Dzięki temu pieknemu zabiegowi, po pobraniu danych z Resta zostanie wywowołana poniższa metoda
-            @Override
-            public void onJsonResponse(boolean success, JSONObject response) {
-                //Tu możemy parsować Json lub przekazać go do klasy JsonParser do dalszej obróbki
-                Log.i("mainActivity", response.toString());
-                //Wywołanie parsowania
-                JSONParser parser = new JSONParser();
-                if(success) {
-                    parser.parseJSONtoArray(response);
-                }
-            }
-        });
+
 
 
 
