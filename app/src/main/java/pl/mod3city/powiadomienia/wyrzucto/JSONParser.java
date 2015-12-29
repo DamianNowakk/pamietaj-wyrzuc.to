@@ -1,5 +1,7 @@
 package pl.mod3city.powiadomienia.wyrzucto;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,19 +9,18 @@ import org.json.JSONObject;
 /**
  * Created by Mikołaj on 2015-12-21.
  */
-public class JSONParser implements JsonResponse {
+public class JSONParser {
     private JSONObject obiekt;
+
     JSONParser (){
         obiekt = new JSONObject();
     }
 
-    @Override
-    public void onJsonResponse(boolean success, JSONObject response) {
+    public void parseJSONtoArray(JSONObject response) {
 
         try {
-
             obiekt = response;
-            JSONArray arr = response.getJSONArray("properties");
+            JSONArray arr = obiekt.getJSONArray("properties");
             String[] tab = new String[arr.length()];
             int licznik=0;
             for (int i = 0; i < arr.length(); i++) {
@@ -63,7 +64,7 @@ public class JSONParser implements JsonResponse {
             }
 
         } catch (JSONException e) {
-
+            Log.i("blad",e.toString());
         }
     }
 

@@ -40,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
             public void onJsonResponse(boolean success, JSONObject response) {
                 //Tu możemy parsować Json lub przekazać go do klasy JsonParser do dalszej obróbki
                 Log.i("mainActivity", response.toString());
+                //Wywołanie parsowania
+                JSONParser parser = new JSONParser();
+                if(success) {
+                    parser.parseJSONtoArray(response);
+                }
             }
         });
 

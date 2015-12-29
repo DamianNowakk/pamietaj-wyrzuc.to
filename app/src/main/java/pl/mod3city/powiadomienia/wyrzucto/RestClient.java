@@ -39,10 +39,9 @@ public class RestClient {
     }
 
 
-
+    //Stara metoda, która będzie wywalona w przyszłości. Służy tylko jak przykład
     public void getJson(final JsonResponse callback){
-        client.get("https://api.bihapi.pl/dane/gdansk?resource=bc14ab19-621d-4607-9689-90a61d13ee4b&filters={%22Ulica_nazwa_skr%C3%B3cona%22:%20%22Akwenowa%22}", new JsonHttpResponseHandler() {
-
+        client.get("https://api.bihapi.pl/dane/gdansk?resource=bc14ab19-621d-4607-9689-90a61d13ee4b&filters={%22Ulica_nazwa_skr%C3%B3cona%22:%20%22Akwenowa%22}", new  JsonHttpResponseHandler() {
             @Override
             public void onStart() {
                 // called before request is started
@@ -63,6 +62,7 @@ public class RestClient {
                 if(errorResponse != null) {
                     callback.onJsonResponse(false, errorResponse);
                 }
+
             }
 
             @Override
