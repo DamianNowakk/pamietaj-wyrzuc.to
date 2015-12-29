@@ -33,8 +33,6 @@ public class JSONParser implements JsonResponse {
         } catch (JSONException e) {
 
         }
-
-
     }
 
     public void doStaffWithRest(){

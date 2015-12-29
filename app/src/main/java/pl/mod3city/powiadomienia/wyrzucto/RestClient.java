@@ -11,8 +11,7 @@ import java.security.KeyStore;
 import cz.msebera.android.httpclient.Header;
 
 
-
-public class RestClient{
+public class RestClient {
     private static RestClient ourInstance;
 
     private AsyncHttpClient client;
@@ -35,10 +34,12 @@ public class RestClient{
         }catch(Exception e){
             Log.d("tagSSL", "Błąd hurtowni certyfikatów");
         }
-        client.setTimeout(1000);
         //Nazwa użytkownika i hasło do połączenia z serwerem, autoryzacja
         client.setBasicAuth("ciecimi", "v78moUzE");
+        client.setConnectTimeout(10000000);
     }
+
+
 
     public void getJson(final JsonResponse callback){
         client.get("https://api.bihapi.pl/dane/gdansk?resource=bc14ab19-621d-4607-9689-90a61d13ee4b&filters={%22Ulica_nazwa_skr%C3%B3cona%22:%20%22Akwenowa%22}", new JsonHttpResponseHandler() {
@@ -55,16 +56,6 @@ public class RestClient{
                     callback.onJsonResponse(true, json);
                 } catch (Exception e) {
                     Log.i("Debuggin", "error");
-                }
-            }
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String response, Throwable throwable) {
-                    Log.i("Debuggin", "FAILURE");
-                try {
-                    JSONObject jObj = new JSONObject(response);
-                    callback.onJsonResponse(false, jObj);
-                }catch (JSONException e){
-                    Log.e("Exception", "JsonException" + e.toString());
                 }
             }
             @Override
