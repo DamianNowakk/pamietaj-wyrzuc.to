@@ -10,17 +10,13 @@ import org.json.JSONObject;
  * Created by Mikołaj on 2015-12-21.
  */
 public class JSONParser {
-    private JSONObject obiekt;
-
     JSONParser (){
-        obiekt = new JSONObject();
     }
 
     public void parseJSONtoArray(JSONObject response) {
 
         try {
-            obiekt = response;
-            JSONArray arr = obiekt.getJSONArray("properties");
+            JSONArray arr = response.getJSONObject("results").getJSONArray("properties");
             String[] tab = new String[arr.length()];
             int licznik=0;
             for (int i = 0; i < arr.length(); i++) {
@@ -30,7 +26,14 @@ public class JSONParser {
                 }
             }
             String[] tabelaDni = new String[licznik];
-            tabelaDni = tab;
+
+            //Tu się dzieją dziwne rzeczy. Tego fora musiałem zrobić, bo wcześniej było tabelaDni =tab co powodowało, że
+            //ten for String dzien :tabelaDni odczytywał nulla i chciał porównywać z suche,mokre itd. Może będziesz wiedział co chciałeś tu dokładnie zrobić
+            //i to poprawisz
+            for(int i = 0; i<licznik; i++){
+                tabelaDni[i] = tab[i];
+            }
+
             int liczSuche =0, liczMokre =0, liczZmieszane = 0;
             for (String dzien : tabelaDni) {
                 if(dzien.contains("Suche"))
@@ -63,7 +66,7 @@ public class JSONParser {
                 }
             }
 
-        } catch (JSONException e) {
+        } catch (Exception e) {
             Log.i("blad",e.toString());
         }
     }

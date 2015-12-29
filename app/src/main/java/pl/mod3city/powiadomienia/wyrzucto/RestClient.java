@@ -14,7 +14,7 @@ import cz.msebera.android.httpclient.Header;
 public class RestClient {
     private static RestClient ourInstance;
 
-    private AsyncHttpClient client;
+    private static AsyncHttpClient client;
 
     public static RestClient getInstance() {
         if(ourInstance == null) {
@@ -40,35 +40,51 @@ public class RestClient {
 
 
     //Stara metoda, która będzie wywalona w przyszłości. Służy tylko jak przykład
-    public void getJson(final JsonResponse callback){
-        client.get("https://api.bihapi.pl/dane/gdansk?resource=bc14ab19-621d-4607-9689-90a61d13ee4b&filters={%22Ulica_nazwa_skr%C3%B3cona%22:%20%22Akwenowa%22}", new  JsonHttpResponseHandler() {
-            @Override
-            public void onStart() {
-                // called before request is started
-            }
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject json) {
-                Log.i("Debuggin", "getting response");
-                try {
-                    Log.i("Debuggin", "Response: " + json.toString());
-                    callback.onJsonResponse(true, json);
-                } catch (Exception e) {
-                    Log.i("Debuggin", "error");
-                }
-            }
 
-            @Override
-            public void onFailure(int statusCode,Header[] headers, Throwable throwable, JSONObject errorResponse){
-                if(errorResponse != null) {
-                    callback.onJsonResponse(false, errorResponse);
+    public void getJson(final JsonResponse callback) {
+            client.get("https://api.bihapi.pl/dane/gdansk?resource=bc14ab19-621d-4607-9689-90a61d13ee4b&filters={%22Ulica_nazwa_skr%C3%B3cona%22:%20%22Akwenowa%22}", new JsonHttpResponseHandler() {
+                @Override
+                public void onStart() {
+                    // called before request is started
                 }
 
-            }
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject json) {
+                    Log.i("Debuggin", "getting response");
+                    try {
+                        callback.onJsonResponse(true, json);
+                    } catch (Exception e) {
+                        Log.i("Debuggin", "Blad w metodzie onSuccess");
 
-            @Override
-            public void onRetry(int retryNo) {
-                // called when request is retried
-            }
-        });
-    }
+                    }
+                }
+                @Override
+                public void onFailure(int statusCode,
+                                      cz.msebera.android.httpclient.Header[] headers,
+                                      java.lang.Throwable throwable,
+                                      org.json.JSONArray errorResponse){
+
+                    try {
+                        callback.onJsonResponse(false, errorResponse.getJSONObject(0));
+                    }catch (Exception e){
+                        Log.i("tag","Blad w onFailure JSON ARRAY");
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        if(errorResponse != null) {
+                            callback.onJsonResponse(false, errorResponse);
+                        }else{
+                            Log.i("blad", "onFailure zrocilo nulla");
+                        }
+                }
+
+                @Override
+                public void onRetry(int retryNo) {
+                    Log.i("Uwaga","Pobiernanie danych zostałao ponowione");
+                }
+            });
+
+        }
 }
