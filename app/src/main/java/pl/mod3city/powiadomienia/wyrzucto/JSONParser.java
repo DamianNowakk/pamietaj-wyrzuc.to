@@ -30,6 +30,38 @@ public class JSONParser implements JsonResponse {
             }
             String[] tabelaDni = new String[licznik];
             tabelaDni = tab;
+            int liczSuche =0, liczMokre =0, liczZmieszane = 0;
+            for (String dzien : tabelaDni) {
+                if(dzien.contains("Suche"))
+                    liczSuche++;
+                else if(dzien.contains("Mokre"))
+                    liczMokre++;
+                else if(dzien.contains("Zmieszane"))
+                    liczZmieszane++;
+            }
+            String[] tabSuche = new String[liczSuche];
+            String[] tabMokre = new String[liczMokre];
+            String[] tabZmieszane = new String[liczZmieszane];
+
+            liczSuche =0;
+            liczMokre =0;
+            liczZmieszane = 0;
+
+            for (String dzien : tabelaDni) {
+                if(dzien.contains("Suche")){
+                    tabSuche[liczSuche] = dzien.substring(6);
+                    liczSuche++;
+                }
+                else if(dzien.contains("Mokre")){
+                    tabMokre[liczMokre] = dzien.substring(6)
+                    liczMokre++;
+                }
+                else if(dzien.contains("Zmieszane")){
+                    tabZmieszane[liczZmieszane] = dzien.substring(10);
+                    liczZmieszane++;
+                }
+            }
+
         } catch (JSONException e) {
 
         }
