@@ -2,6 +2,8 @@ package pl.mod3city.powiadomienia.wyrzucto;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -51,29 +53,42 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Pobieram dane z BIHAPI", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                //Po naciśnięciu różowego przycisku odświeżane są dane BIHAPI
-                RestClient.getInstance().pobierzJsonaOdpadyMokreSucheZmieszaneDanaUlica(new JsonResponse() {
-                    //Dzięki temu pieknemu zabiegowi, po pobraniu danych z Resta zostanie wywowołana poniższa metoda
-                    @Override
-                    public void onJsonResponse(boolean success, JSONObject response) {
-                        //Tu możemy parsować Json lub przekazać go do klasy JsonParser do dalszej obróbki
-                        Log.i("mainActivity", response.toString());
-                        //Wywołanie parsowania
-                        JSONParser parser = new JSONParser();
-                        if (success) {
-                            parser.parseJSONtoArray(context, response);
-                        }else {
-                            CharSequence text1 = "Brak danych do pobrania. Sprawdź nazwę ulicy w ustawieniach.";
-                            int duration2 = Toast.LENGTH_LONG;
-                            Toast brakDanych =  Toast.makeText(context,text1,duration2);
-                            brakDanych.show();
+
+                ConnectivityManager cm =
+                        (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                boolean isConnected = activeNetwork != null &&
+                        activeNetwork.isConnectedOrConnecting();
+                if(!isConnected){
+                    Snackbar.make(view, "Brak połączenia z internetem", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+                else {
+                    //Po naciśnięciu różowego przycisku odświeżane są dane BIHAPI
+                    RestClient.getInstance().pobierzJsonaOdpadyMokreSucheZmieszaneDanaUlica(new JsonResponse() {
+                        //Dzięki temu pieknemu zabiegowi, po pobraniu danych z Resta zostanie wywowołana poniższa metoda
+                        @Override
+                        public void onJsonResponse(boolean success, JSONObject response) {
+                            //Tu możemy parsować Json lub przekazać go do klasy JsonParser do dalszej obróbki
+                            Log.i("mainActivity", response.toString());
+                            //Wywołanie parsowania
+                            JSONParser parser = new JSONParser();
+                            if (success) {
+                                parser.parseJSONtoArray(context, response);
+                            } else {
+                                CharSequence text1 = "Brak danych do pobrania. Sprawdź nazwę ulicy w ustawieniach.";
+                                int duration2 = Toast.LENGTH_LONG;
+                                Toast brakDanych = Toast.makeText(context, text1, duration2);
+                                brakDanych.show();
+                            }
+
+                            //wyświetlenie dni
+                            wyswietlanieDni(context);
+
                         }
-
-                        //wyświetlenie dni
-                        wyswietlanieDni(context);
-
-                    }
-                }, getBaseContext());
+                    }, getBaseContext());
+                }
             }
         });
 
