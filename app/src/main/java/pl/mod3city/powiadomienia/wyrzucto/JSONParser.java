@@ -27,9 +27,6 @@ public class JSONParser {
             }
             String[] tabelaDni = new String[licznik];
 
-            //Tu się dzieją dziwne rzeczy. Tego fora musiałem zrobić, bo wcześniej było tabelaDni =tab co powodowało, że
-            //ten for String dzien :tabelaDni odczytywał nulla i chciał porównywać z suche,mokre itd. Może będziesz wiedział co chciałeś tu dokładnie zrobić
-            //i to poprawisz
             for(int i = 0; i<licznik; i++){
                 tabelaDni[i] = tab[i];
             }
@@ -65,6 +62,9 @@ public class JSONParser {
                     liczZmieszane++;
                 }
             }
+
+            
+
 
         } catch (Exception e) {
             Log.i("blad",e.toString());
