@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Dymek z napisem
         final Context context = getApplicationContext();
-        CharSequence text = "Witaj!Aby odswieżyć widok naciśnij przycisk synchronizacji.";
+        CharSequence text = "Witaj! Aby odswieżyć widok naciśnij przycisk synchronizacji.";
         int duration = Toast.LENGTH_LONG;
-
+        duration++;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
         //Koniec dymku
@@ -114,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
         TextView sucheKazdy = (TextView) findViewById(R.id.odbiorSucheKazdy);
         TextView sucheNastepne = (TextView) findViewById(R.id.odbiorSucheNastepne);
 
+        //TextView zmieszaneKazdy = (TextView) findViewById(R.id.odbiorZmieszaneKazdy);
+        //TextView zmieszaneNastepne = (TextView) findViewById(R.id.odbiorZmieszaneNastepne);
 
         try {
             File fileMokre = new File(context.getFilesDir(), "mokre.txt");
@@ -138,6 +140,16 @@ public class MainActivity extends AppCompatActivity {
             sucheKazdy.setText(suche);
             sucheNastepne.setText(najblizszyDzien(listaSuchych));
 
+            File fileZmieszane = new File(context.getFilesDir(), "zmieszane.txt");
+            Scanner zmieszaneSkaner = new Scanner(fileZmieszane);
+            while(zmieszaneSkaner.hasNext()){
+                String dzien = zamianaDnia(zmieszaneSkaner.next());
+                zmieszane += dzien;
+                zmieszane += " ";
+                listaSuchych.add(dzien);
+            }
+            //zmieszaneKazdy.setText(zmieszane);
+            //zmieszaneNastepne.setText(najblizszyDzien(listaSuchych));
 
 
         }catch(Exception e){
@@ -169,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public Integer zamianaDniaNaInt(String dzien){
+    public Integer zamianaDniaInt(String dzien){
         if(dzien.equals("Poniedziałek"))
             return 2;
         else if(dzien.equals("Wtorek"))
@@ -186,13 +198,31 @@ public class MainActivity extends AppCompatActivity {
             return 1;
         else
             return 123;
+    }
 
+    public String zamianaDniaInt(Integer dzien){
+        if(dzien == 2)
+            return "Poniedziałek";
+        else if(dzien == 3)
+            return "Wtorek";
+        else if(dzien == 4)
+            return "Środa";
+        else if(dzien == 5)
+            return "Czwartek";
+        else if(dzien == 6)
+            return "Piątek";
+        else if(dzien == 7)
+            return "Sobota";
+        else if(dzien == 1)
+            return "Niedziela";
+        else
+            return "błąd";
     }
 
     public String najblizszyDzien(ArrayList<String> listaDni){
         Integer[] tab = new Integer[listaDni.size()];
         for(int i=0; i<listaDni.size(); i++){
-            tab[i] = zamianaDniaNaInt(listaDni.get(i));
+            tab[i] = zamianaDniaInt(listaDni.get(i));
         }
 
         Date dateNow = new Date();
@@ -201,6 +231,14 @@ public class MainActivity extends AppCompatActivity {
         calendar.setTime(dateNow);
         int dayOfWeekNow = calendar.get(Calendar.DAY_OF_WEEK);
 
-        return "AAAA";
+        while(true){
+            dayOfWeekNow = dayOfWeekNow % 8;
+            for(int i=0; i<tab.length; i++) {
+                if(dayOfWeekNow == tab[i]){
+                    return zamianaDniaInt(tab[i]);
+                }
+            }
+            dayOfWeekNow++;
+        }
     }
 }
