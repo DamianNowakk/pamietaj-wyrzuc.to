@@ -66,6 +66,19 @@
         <item>2</item>
         <item>0</item>
     </string-array>
+    <string-array name="pref_czas_przed_wystawka_defaultvalues">
+    </string-array>
+
+    <string-array name="catos">
+        <item >Movies</item>
+        <item >Test</item>
+        <item >TEst23</item>
+    </string-array>
+    <string-array name="catovalues">
+        <item >1</item>
+        <item >2</item>
+        <item >3</item>
+    </string-array>
 
 
     <!-- Example settings for Notifications -->

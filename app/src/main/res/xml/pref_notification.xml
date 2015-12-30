@@ -21,4 +21,15 @@
         android:positiveButtonText="@null"
         android:title="@string/pref_title_czas_przed_wystawka" />
 
+    <MultiSelectListPreference
+        android:title="@string/pref_title_czas_przed_wystawka"
+        android:key="POWIADOMIENIA_WYSTAWKI_CZASS"
+        android:dependency="POWIADOMIENIA_WYSTAWKI"
+        android:summary="List to choose from"
+        android:entries="@array/pref_czas_przed_wystawka_title"
+        android:entryValues="@array/pref_czas_przed_wystawka_values"
+        android:defaultValue="@array/pref_czas_przed_wystawka_defaultvalues"
+        android:dialogTitle="@string/pref_title_czas_przed_wystawka"
+        >
+    </MultiSelectListPreference>
 </PreferenceScreen>
