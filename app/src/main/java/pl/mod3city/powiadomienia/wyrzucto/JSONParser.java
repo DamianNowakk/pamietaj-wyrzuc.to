@@ -25,45 +25,27 @@ public class JSONParser {
                     licznik++;
                 }
             }
-            String[] tabelaDni = new String[licznik];
 
-            for(int i = 0; i<licznik; i++){
-                tabelaDni[i] = tab[i];
-            }
+            String suche = new String();
+            String mokre = new String();
+            String zmieszane = new String();
 
-            int liczSuche =0, liczMokre =0, liczZmieszane = 0;
-            for (String dzien : tabelaDni) {
-                if(dzien.contains("Suche"))
-                    liczSuche++;
-                else if(dzien.contains("Mokre"))
-                    liczMokre++;
-                else if(dzien.contains("Zmieszane"))
-                    liczZmieszane++;
-            }
-            String[] tabSuche = new String[liczSuche];
-            String[] tabMokre = new String[liczMokre];
-            String[] tabZmieszane = new String[liczZmieszane];
-
-            liczSuche =0;
-            liczMokre =0;
-            liczZmieszane = 0;
-
-            for (String dzien : tabelaDni) {
+            for (String dzien : tab) {
                 if(dzien.contains("Suche")){
-                    tabSuche[liczSuche] = dzien.substring(6);
-                    liczSuche++;
+                    suche += dzien.substring(6);
+                    suche += "\n";
                 }
                 else if(dzien.contains("Mokre")){
-                    tabMokre[liczMokre] = dzien.substring(6);
-                    liczMokre++;
+                    mokre += dzien.substring(6);
+                    mokre += "\n";
                 }
                 else if(dzien.contains("Zmieszane")){
-                    tabZmieszane[liczZmieszane] = dzien.substring(10);
-                    liczZmieszane++;
+                    zmieszane += dzien.substring(10);
+                    zmieszane += "\n";
                 }
             }
 
-            
+
 
 
         } catch (Exception e) {
