@@ -11,9 +11,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.*;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         //wyświetlenie dni
+                        wyswietlanieDni(context);
 
                     }
                 });
@@ -90,5 +96,93 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void wyswietlanieDni(Context context){
+        String suche = new String();
+        String mokre = new String();
+        String zmieszane = new String();
+        ArrayList<String> listaSuchych = new ArrayList<String>();
+        ArrayList<String> listaMokrych = new ArrayList<String>();
+
+        TextView mokreKazdy = (TextView) findViewById(R.id.odbiorMokreKazdy);
+        TextView mokreNastepne = (TextView) findViewById(R.id.odbiorMokreNastepne);
+
+        TextView sucheKazdy = (TextView) findViewById(R.id.odbiorSucheKazdy);
+        TextView sucheNastepne = (TextView) findViewById(R.id.odbiorSucheNastepne);
+
+
+        try {
+            File fileMokre = new File(context.getFilesDir(), "mokre.txt");
+            Scanner mokreSkaner = new Scanner(fileMokre);
+            while(mokreSkaner.hasNext()){
+                mokre += zamianaDnia(mokreSkaner.next());
+                mokre += " ";
+            }
+            mokreKazdy.setText(mokre);
+
+            File fileSuche = new File(context.getFilesDir(), "suche.txt");
+            Scanner sucheSkaner = new Scanner(fileSuche);
+            while(sucheSkaner.hasNext()){
+                suche += zamianaDnia(sucheSkaner.next());
+                suche += " ";
+            }
+            sucheKazdy.setText(suche);
+
+
+
+
+        }catch(Exception e){
+
+
+        }
+
+
+
+
+    }
+
+    public String zamianaDnia(String dzien){
+        if(dzien.equals("Pn"))
+            return "Poniedziałek";
+        else if(dzien.equals("Wt"))
+            return "Wtorek";
+        else if(dzien.equals("Śr"))
+            return "Środa";
+        else if(dzien.equals("Cz"))
+            return "Czwartek";
+        else if(dzien.equals("Pt"))
+            return "Piątek";
+        else if(dzien.equals("So"))
+            return "Sobota";
+        else if(dzien.equals("Nd"))
+            return "Niedziela";
+        else
+            return "Błąd";
+
+    }
+
+    public Integer zamianaDniaNaInt(String dzien){
+        if(dzien.equals("Poniedziałek"))
+            return 1;
+        else if(dzien.equals("Wtorek"))
+            return 2;
+        else if(dzien.equals("Środa"))
+            return 3;
+        else if(dzien.equals("Czwartek"))
+            return 4;
+        else if(dzien.equals("Piątek"))
+            return 5;
+        else if(dzien.equals("Sobota"))
+            return 6;
+        else if(dzien.equals("Niedziela"))
+            return 7;
+        else
+            return 123;
+
+    }
+
+    public String najblizszyDzien(ArrayList<String> listaDni){
+
     }
 }
