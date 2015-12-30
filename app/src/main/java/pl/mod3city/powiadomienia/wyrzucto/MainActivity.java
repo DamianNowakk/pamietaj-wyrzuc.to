@@ -11,9 +11,16 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.*;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Scanner;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -55,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         //wyświetlenie dni
+                        wyswietlanieDni(context);
 
                     }
                 });
@@ -90,5 +98,109 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void wyswietlanieDni(Context context){
+        String suche = new String();
+        String mokre = new String();
+        String zmieszane = new String();
+        ArrayList<String> listaSuchych = new ArrayList<String>();
+        ArrayList<String> listaMokrych = new ArrayList<String>();
+        ArrayList<String> listaZmieszanych = new ArrayList<String>();
+
+        TextView mokreKazdy = (TextView) findViewById(R.id.odbiorMokreKazdy);
+        TextView mokreNastepne = (TextView) findViewById(R.id.odbiorMokreNastepne);
+
+        TextView sucheKazdy = (TextView) findViewById(R.id.odbiorSucheKazdy);
+        TextView sucheNastepne = (TextView) findViewById(R.id.odbiorSucheNastepne);
+
+
+        try {
+            File fileMokre = new File(context.getFilesDir(), "mokre.txt");
+            Scanner mokreSkaner = new Scanner(fileMokre);
+            while(mokreSkaner.hasNext()){
+                String dzien = zamianaDnia(mokreSkaner.next());
+                mokre += dzien;
+                mokre += " ";
+                listaMokrych.add(dzien);
+            }
+            mokreKazdy.setText(mokre);
+            mokreNastepne.setText(najblizszyDzien(listaMokrych));
+
+            File fileSuche = new File(context.getFilesDir(), "suche.txt");
+            Scanner sucheSkaner = new Scanner(fileSuche);
+            while(sucheSkaner.hasNext()){
+                String dzien = zamianaDnia(sucheSkaner.next());
+                suche += dzien;
+                suche += " ";
+                listaSuchych.add(dzien);
+            }
+            sucheKazdy.setText(suche);
+            sucheNastepne.setText(najblizszyDzien(listaSuchych));
+
+
+
+        }catch(Exception e){
+            Log.i("blad",e.toString());
+        }
+
+
+
+
+    }
+
+    public String zamianaDnia(String dzien){
+        if(dzien.equals("Pn"))
+            return "Poniedziałek";
+        else if(dzien.equals("Wt"))
+            return "Wtorek";
+        else if(dzien.equals("Śr"))
+            return "Środa";
+        else if(dzien.equals("Cz"))
+            return "Czwartek";
+        else if(dzien.equals("Pt"))
+            return "Piątek";
+        else if(dzien.equals("So"))
+            return "Sobota";
+        else if(dzien.equals("Nd"))
+            return "Niedziela";
+        else
+            return "Błąd";
+
+    }
+
+    public Integer zamianaDniaNaInt(String dzien){
+        if(dzien.equals("Poniedziałek"))
+            return 2;
+        else if(dzien.equals("Wtorek"))
+            return 3;
+        else if(dzien.equals("Środa"))
+            return 4;
+        else if(dzien.equals("Czwartek"))
+            return 5;
+        else if(dzien.equals("Piątek"))
+            return 6;
+        else if(dzien.equals("Sobota"))
+            return 7;
+        else if(dzien.equals("Niedziela"))
+            return 1;
+        else
+            return 123;
+
+    }
+
+    public String najblizszyDzien(ArrayList<String> listaDni){
+        Integer[] tab = new Integer[listaDni.size()];
+        for(int i=0; i<listaDni.size(); i++){
+            tab[i] = zamianaDniaNaInt(listaDni.get(i));
+        }
+
+        Date dateNow = new Date();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateNow);
+        int dayOfWeekNow = calendar.get(Calendar.DAY_OF_WEEK);
+
+        return "AAAA";
     }
 }
