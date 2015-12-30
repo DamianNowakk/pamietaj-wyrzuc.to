@@ -30,6 +30,7 @@
     </string-array>
 
     <string name="pref_title_dzielnica">Dzielnica zamieszkania</string>
+    <string name="key_title_dzielnica">DZIELNICA</string>
     <string-array name="pref_list_dzielnica">
       <item>Wyspa Sobieszewska, Krakowiec-Górki Zachodnie, Rudniki, Olszynka, Orunia- Św.Wojciech-Lipce, Chełm, Wzgórze Mickiewicza</item>
         <item>Stogi, Przeróbka, Nowy Port, Letnica, Młyniska, Śródmieście</item>

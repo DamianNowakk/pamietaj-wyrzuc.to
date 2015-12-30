@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, "Pobieram dane z BIHAPI", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 //Po naciśnięciu różowego przycisku odświeżane są dane BIHAPI
-                RestClient.getInstance().getJson(new JsonResponse() {
+                RestClient.getInstance().pobierzJsonaOdpadyMokreSucheZmieszaneDanaUlica(new JsonResponse() {
                     //Dzięki temu pieknemu zabiegowi, po pobraniu danych z Resta zostanie wywowołana poniższa metoda
                     @Override
                     public void onJsonResponse(boolean success, JSONObject response) {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         wyswietlanieDni(context);
 
                     }
-                });
+                }, getBaseContext());
             }
         });
 
