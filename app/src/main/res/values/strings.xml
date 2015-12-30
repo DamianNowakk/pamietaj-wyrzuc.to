@@ -56,6 +56,7 @@
         <item>5 dni wcześniej</item>
         <item>4 dni wcześniej</item>
         <item>2 dni wcześniej</item>
+        <item>dzien wcześniej</item>
         <item>W dzień wystawki</item>
     </string-array>
     <string-array name="pref_czas_przed_wystawka_values">
@@ -64,27 +65,64 @@
         <item>5</item>
         <item>4</item>
         <item>2</item>
+        <item>1</item>
         <item>0</item>
     </string-array>
     <string-array name="pref_czas_przed_wystawka_defaultvalues">
     </string-array>
 
-    <string-array name="catos">
-        <item >Movies</item>
-        <item >Test</item>
-        <item >TEst23</item>
+
+
+    <string name="pref_title_czas_przed_wywozem_suchych">Okres przed wywozem suchych</string>
+    <string-array name="pref_czas_przed_wywozem_suchych_title">
+        <item>7 dni wcześniej</item>
+        <item>6 dni wcześniej</item>
+        <item>5 dni wcześniej</item>
+        <item>4 dni wcześniej</item>
+        <item>2 dni wcześniej</item>
+        <item>dzien wcześniej</item>
+        <item>W dzień wystawki</item>
     </string-array>
-    <string-array name="catovalues">
-        <item >1</item>
-        <item >2</item>
-        <item >3</item>
+    <string-array name="pref_czas_przed_wywozem_suchych_values">
+        <item>7</item>
+        <item>6</item>
+        <item>5</item>
+        <item>4</item>
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="pref_czas_przed_wywozem_suchych_defaultvalues">
     </string-array>
 
 
+    <string name="pref_title_czas_przed_wywozem_mokrych">Okres przed wywozem mokrych</string>
+    <string-array name="pref_czas_przed_wywozem_mokrych_title">
+        <item>7 dni wcześniej</item>
+        <item>6 dni wcześniej</item>
+        <item>5 dni wcześniej</item>
+        <item>4 dni wcześniej</item>
+        <item>2 dni wcześniej</item>
+        <item>dzien wcześniej</item>
+        <item>W dzień wystawki</item>
+    </string-array>
+    <string-array name="pref_czas_przed_wywozem_mokrych_values">
+        <item>7</item>
+        <item>6</item>
+        <item>5</item>
+        <item>4</item>
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+    <string-array name="pref_czas_przed_wywozem_mokrych_defaultvalues">
+    </string-array>
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Powiadomienia</string>
 
     <string name="pref_title_wystawki">Powiadomienia o wystawkach</string>
+    <string name="pref_title_wywoz_suche">Powiadomienia o wywozie suchych</string>
+    <string name="pref_title_wywoz_mokre">Powiadomienia o wywozie mokrych</string>
 
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
