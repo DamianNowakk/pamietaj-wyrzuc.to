@@ -37,7 +37,7 @@
                 android:layout_height="105dp"
                 android:id="@+id/imageView"
                 android:src="@drawable/ic_mokre_text"
-                android:layout_weight="0.25"
+                android:layout_weight="0.30"
                 android:adjustViewBounds="true"
                 android:baselineAlignBottom="false"
                 android:clickable="true" />
@@ -103,7 +103,7 @@
                 android:layout_height="105dp"
                 android:id="@+id/imageView2"
                 android:src="@drawable/ic_suche_text"
-                android:layout_weight="0.25"
+                android:layout_weight="0.30"
                 android:longClickable="false"
                 android:cropToPadding="false"
                 android:contextClickable="false"
@@ -167,17 +167,17 @@
                 android:layout_marginTop="10dp" >
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="105dp"
                     android:id="@+id/imageView3"
                     android:src="@drawable/ic_suche_text"
-                    android:layout_weight="0.25"
                     android:longClickable="false"
                     android:cropToPadding="false"
                     android:contextClickable="false"
                     android:baselineAlignBottom="false"
                     android:adjustViewBounds="true"
-                    android:clickable="true" />
+                    android:clickable="true"
+                    android:layout_weight="0.30" />
 
                 <LinearLayout
                     android:orientation="vertical"
