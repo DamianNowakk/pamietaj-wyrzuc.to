@@ -89,6 +89,12 @@
             </LinearLayout>
         </TableRow>
 
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+
             <TableRow
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -156,6 +162,11 @@
                     android:layout_marginTop="10dp" />
             </LinearLayout>
         </TableRow>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
 
             <TableRow
                 android:orientation="horizontal"
