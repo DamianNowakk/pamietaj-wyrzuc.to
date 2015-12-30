@@ -17,7 +17,7 @@
     android:orientation="vertical">
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/scrollView" >
 
@@ -34,13 +34,14 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="105dp"
+                android:layout_height="150dp"
                 android:id="@+id/imageView"
-                android:src="@drawable/ic_mokre_text"
-                android:layout_weight="0.30"
+                android:src="@drawable/ic_mokre_icon"
+                android:layout_weight="0.40"
                 android:adjustViewBounds="true"
                 android:baselineAlignBottom="false"
-                android:clickable="true" />
+                android:clickable="true"
+                android:nestedScrollingEnabled="false" />
 
             <LinearLayout
                 android:orientation="vertical"
@@ -105,11 +106,11 @@
             android:layout_marginTop="10dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="105dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
                 android:id="@+id/imageView2"
-                android:src="@drawable/ic_suche_text"
-                android:layout_weight="0.30"
+                android:src="@drawable/ic_suche_icon"
+                android:layout_weight="0.40"
                 android:longClickable="false"
                 android:cropToPadding="false"
                 android:contextClickable="false"
@@ -179,16 +180,16 @@
 
                 <ImageView
                     android:layout_width="fill_parent"
-                    android:layout_height="105dp"
+                    android:layout_height="150dp"
                     android:id="@+id/imageView3"
-                    android:src="@drawable/ic_suche_text"
+                    android:src="@drawable/ic_zmieszane_text"
                     android:longClickable="false"
                     android:cropToPadding="false"
                     android:contextClickable="false"
                     android:baselineAlignBottom="false"
                     android:adjustViewBounds="true"
                     android:clickable="true"
-                    android:layout_weight="0.30" />
+                    android:layout_weight="0.40" />
 
                 <LinearLayout
                     android:orientation="vertical"
