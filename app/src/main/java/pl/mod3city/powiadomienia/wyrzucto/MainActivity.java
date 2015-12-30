@@ -18,6 +18,8 @@ import org.json.*;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 
@@ -104,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
         String zmieszane = new String();
         ArrayList<String> listaSuchych = new ArrayList<String>();
         ArrayList<String> listaMokrych = new ArrayList<String>();
+        ArrayList<String> listaZmieszanych = new ArrayList<String>();
 
         TextView mokreKazdy = (TextView) findViewById(R.id.odbiorMokreKazdy);
         TextView mokreNastepne = (TextView) findViewById(R.id.odbiorMokreNastepne);
@@ -116,25 +119,29 @@ public class MainActivity extends AppCompatActivity {
             File fileMokre = new File(context.getFilesDir(), "mokre.txt");
             Scanner mokreSkaner = new Scanner(fileMokre);
             while(mokreSkaner.hasNext()){
-                mokre += zamianaDnia(mokreSkaner.next());
+                String dzien = zamianaDnia(mokreSkaner.next());
+                mokre += dzien;
                 mokre += " ";
+                listaMokrych.add(dzien);
             }
             mokreKazdy.setText(mokre);
+            mokreNastepne.setText(najblizszyDzien(listaMokrych));
 
             File fileSuche = new File(context.getFilesDir(), "suche.txt");
             Scanner sucheSkaner = new Scanner(fileSuche);
             while(sucheSkaner.hasNext()){
-                suche += zamianaDnia(sucheSkaner.next());
+                String dzien = zamianaDnia(sucheSkaner.next());
+                suche += dzien;
                 suche += " ";
+                listaSuchych.add(dzien);
             }
             sucheKazdy.setText(suche);
-
+            sucheNastepne.setText(najblizszyDzien(listaSuchych));
 
 
 
         }catch(Exception e){
-
-
+            Log.i("blad",e.toString());
         }
 
 
@@ -164,25 +171,36 @@ public class MainActivity extends AppCompatActivity {
 
     public Integer zamianaDniaNaInt(String dzien){
         if(dzien.equals("Poniedziałek"))
-            return 1;
-        else if(dzien.equals("Wtorek"))
             return 2;
-        else if(dzien.equals("Środa"))
+        else if(dzien.equals("Wtorek"))
             return 3;
-        else if(dzien.equals("Czwartek"))
+        else if(dzien.equals("Środa"))
             return 4;
-        else if(dzien.equals("Piątek"))
+        else if(dzien.equals("Czwartek"))
             return 5;
-        else if(dzien.equals("Sobota"))
+        else if(dzien.equals("Piątek"))
             return 6;
-        else if(dzien.equals("Niedziela"))
+        else if(dzien.equals("Sobota"))
             return 7;
+        else if(dzien.equals("Niedziela"))
+            return 1;
         else
             return 123;
 
     }
 
     public String najblizszyDzien(ArrayList<String> listaDni){
+        Integer[] tab = new Integer[listaDni.size()];
+        for(int i=0; i<listaDni.size(); i++){
+            tab[i] = zamianaDniaNaInt(listaDni.get(i));
+        }
 
+        Date dateNow = new Date();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateNow);
+        int dayOfWeekNow = calendar.get(Calendar.DAY_OF_WEEK);
+
+        return "AAAA";
     }
 }
