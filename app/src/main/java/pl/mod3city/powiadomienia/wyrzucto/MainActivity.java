@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         //Dymek z napisem
         final Context context = getApplicationContext();
         CharSequence text = "Witaj! Aby odswieżyć widok naciśnij przycisk synchronizacji.";
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
         //Koniec dymku
+
+        wyswietlanieDni(context);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
