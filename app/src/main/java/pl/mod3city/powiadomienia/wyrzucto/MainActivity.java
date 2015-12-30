@@ -62,7 +62,11 @@ public class MainActivity extends AppCompatActivity {
                         JSONParser parser = new JSONParser();
                         if (success) {
                             parser.parseJSONtoArray(context, response);
-
+                        }else {
+                            CharSequence text1 = "Brak danych do pobrania. Sprawdź nazwę ulicy w ustawieniach.";
+                            int duration2 = Toast.LENGTH_LONG;
+                            Toast brakDanych =  Toast.makeText(context,text1,duration2);
+                            brakDanych.show();
                         }
 
                         //wyświetlenie dni
