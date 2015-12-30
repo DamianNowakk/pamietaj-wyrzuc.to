@@ -118,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
         TextView sucheKazdy = (TextView) findViewById(R.id.odbiorSucheKazdy);
         TextView sucheNastepne = (TextView) findViewById(R.id.odbiorSucheNastepne);
 
-        //TextView zmieszaneKazdy = (TextView) findViewById(R.id.odbiorZmieszaneKazdy);
-        //TextView zmieszaneNastepne = (TextView) findViewById(R.id.odbiorZmieszaneNastepne);
+        TextView zmieszaneKazdy = (TextView) findViewById(R.id.odbiorZmieszaneKazdy);
+        TextView zmieszaneNastepne = (TextView) findViewById(R.id.odbiorZmieszaneNastepne);
 
         try {
             File fileMokre = new File(context.getFilesDir(), "mokre.txt");
@@ -150,10 +150,10 @@ public class MainActivity extends AppCompatActivity {
                 String dzien = zamianaDnia(zmieszaneSkaner.next());
                 zmieszane += dzien;
                 zmieszane += " ";
-                listaSuchych.add(dzien);
+                listaZmieszanych.add(dzien);
             }
-            //zmieszaneKazdy.setText(zmieszane);
-            //zmieszaneNastepne.setText(najblizszyDzien(listaSuchych));
+            zmieszaneKazdy.setText(zmieszane);
+            zmieszaneNastepne.setText(najblizszyDzien(listaZmieszanych));
 
 
         }catch(Exception e){

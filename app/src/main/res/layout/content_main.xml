@@ -200,7 +200,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Medium Text"
-                        android:id="@+id/textView2"
+                        android:id="@+id/odbiorZmieszaneKazdy"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp" />
 
@@ -219,7 +219,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Medium Text"
-                        android:id="@+id/textView4"
+                        android:id="@+id/odbiorZmieszaneNastepne"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp" />
                 </LinearLayout>
