@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Dymek z napisem
-        Context context = getApplicationContext();
+        final Context context = getApplicationContext();
         CharSequence text = "Witaj!Aby odswieżyć widok naciśnij przycisk synchronizacji.";
         int duration = Toast.LENGTH_LONG;
 
@@ -50,8 +50,12 @@ public class MainActivity extends AppCompatActivity {
                         //Wywołanie parsowania
                         JSONParser parser = new JSONParser();
                         if (success) {
-                            parser.parseJSONtoArray(response);
+                            parser.parseJSONtoArray(context, response);
+
                         }
+
+                        //wyświetlenie dni
+
                     }
                 });
             }

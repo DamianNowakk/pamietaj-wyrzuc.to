@@ -1,5 +1,6 @@
 package pl.mod3city.powiadomienia.wyrzucto;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -16,7 +17,7 @@ public class JSONParser {
     JSONParser (){
     }
 
-    public void parseJSONtoArray(JSONObject response) {
+    public void parseJSONtoArray(Context context, JSONObject response) {
 
         try {
             JSONArray arr = response.getJSONObject("results").getJSONArray("properties");
@@ -51,16 +52,18 @@ public class JSONParser {
                     zmieszane += "\n";
                 }
             }
-            File file = new File("suche.txt");
-            PrintWriter sucheZapis = new PrintWriter(file);
+            File fileSuche = new File(context.getFilesDir(), "suche.txt");
+            PrintWriter sucheZapis = new PrintWriter(fileSuche);
             sucheZapis.print(suche);
             sucheZapis.close();
 
-            PrintWriter mokreZapis = new PrintWriter("mokre.txt");
+            File fileMokre = new File(context.getFilesDir(), "mokre.txt");
+            PrintWriter mokreZapis = new PrintWriter(fileMokre);
             mokreZapis.print(mokre);
             mokreZapis.close();
-            
-            PrintWriter zmieszaneZapis = new PrintWriter("zmieszane.txt");
+
+            File fileZmieszane = new File(context.getFilesDir(), "zmieszane.txt");
+            PrintWriter zmieszaneZapis = new PrintWriter(fileZmieszane);
             zmieszaneZapis.print(zmieszane);
             zmieszaneZapis.close();
 
