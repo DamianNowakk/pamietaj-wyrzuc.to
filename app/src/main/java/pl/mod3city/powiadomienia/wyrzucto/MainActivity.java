@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
                 boolean isConnected = activeNetwork != null &&
                         activeNetwork.isConnectedOrConnecting();
+                //gdy brak internetu
                 if(!isConnected){
                     Snackbar.make(view, "Brak połączenia z internetem", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
