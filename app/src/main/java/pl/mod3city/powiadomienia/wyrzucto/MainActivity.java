@@ -1,22 +1,16 @@
 package pl.mod3city.powiadomienia.wyrzucto;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.*;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -25,105 +19,17 @@ import java.util.Date;
 import java.util.Scanner;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Fragment {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
-
-        //Dymek z napisem
-        final Context context = getApplicationContext();
-        CharSequence text = "Witaj! Aby odswieżyć widok naciśnij przycisk synchronizacji.";
-        int duration = Toast.LENGTH_LONG;
-        duration++;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-        //Koniec dymku
-
-        wyswietlanieDni(context);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Pobieram dane z BIHAPI", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-                ConnectivityManager cm =
-                        (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-                boolean isConnected = activeNetwork != null &&
-                        activeNetwork.isConnectedOrConnecting();
-                if(!isConnected){
-                    Snackbar.make(view, "Brak połączenia z internetem", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                }
-                else {
-                    //Po naciśnięciu różowego przycisku odświeżane są dane BIHAPI
-                    RestClient.getInstance().pobierzJsonaOdpadyMokreSucheZmieszaneDanaUlica(new JsonResponse() {
-                        //Dzięki temu pieknemu zabiegowi, po pobraniu danych z Resta zostanie wywowołana poniższa metoda
-                        @Override
-                        public void onJsonResponse(boolean success, JSONObject response) {
-                            //Tu możemy parsować Json lub przekazać go do klasy JsonParser do dalszej obróbki
-                            Log.i("mainActivity", response.toString());
-                            //Wywołanie parsowania
-                            JSONParser parser = new JSONParser();
-                            if (success) {
-                                parser.parseJSONtoArray(context, response);
-                            } else {
-                                CharSequence text1 = "Brak danych do pobrania. Sprawdź nazwę ulicy w ustawieniach.";
-                                int duration2 = Toast.LENGTH_LONG;
-                                Toast brakDanych = Toast.makeText(context, text1, duration2);
-                                brakDanych.show();
-                            }
-
-                            //wyświetlenie dni
-                            wyswietlanieDni(context);
-
-                        }
-                    }, getBaseContext());
-                }
-            }
-        });
-
-
-
-
-
-
-
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                         Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.content_main,container,false);
+        wyswietlanieDni(getContext(),rootView);
+        return rootView;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent i = new Intent(this, SettingsActivity.class);
-            startActivityForResult(i, RESULT_OK);
-
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void wyswietlanieDni(Context context){
+    public void wyswietlanieDni(Context context,View view){
         String suche = new String();
         String mokre = new String();
         String zmieszane = new String();
@@ -131,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> listaMokrych = new ArrayList<String>();
         ArrayList<String> listaZmieszanych = new ArrayList<String>();
 
-        TextView mokreKazdy = (TextView) findViewById(R.id.odbiorMokreKazdy);
-        TextView mokreNastepne = (TextView) findViewById(R.id.odbiorMokreNastepne);
+        TextView mokreKazdy = (TextView) view.findViewById(R.id.odbiorMokreKazdy);
+        TextView mokreNastepne = (TextView) view.findViewById(R.id.odbiorMokreNastepne);
 
-        TextView sucheKazdy = (TextView) findViewById(R.id.odbiorSucheKazdy);
-        TextView sucheNastepne = (TextView) findViewById(R.id.odbiorSucheNastepne);
+        TextView sucheKazdy = (TextView) view.findViewById(R.id.odbiorSucheKazdy);
+        TextView sucheNastepne = (TextView) view.findViewById(R.id.odbiorSucheNastepne);
 
-        TextView zmieszaneKazdy = (TextView) findViewById(R.id.odbiorZmieszaneKazdy);
-        TextView zmieszaneNastepne = (TextView) findViewById(R.id.odbiorZmieszaneNastepne);
+        TextView zmieszaneKazdy = (TextView) view.findViewById(R.id.odbiorZmieszaneKazdy);
+        TextView zmieszaneNastepne = (TextView) view.findViewById(R.id.odbiorZmieszaneNastepne);
 
         try {
             File fileMokre = new File(context.getFilesDir(), "mokre.txt");
@@ -176,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         }catch(Exception e){
-            Log.i("blad",e.toString());
+            Log.i("blad", e.toString());
         }
 
 
@@ -264,4 +170,5 @@ public class MainActivity extends AppCompatActivity {
             dayOfWeekNow++;
         }
     }
+
 }

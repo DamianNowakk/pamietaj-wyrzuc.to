@@ -32,7 +32,7 @@
     <string name="pref_title_dzielnica">Dzielnica zamieszkania</string>
     <string name="key_title_dzielnica">DZIELNICA</string>
     <string-array name="pref_list_dzielnica">
-      <item>Wyspa Sobieszewska, Krakowiec-Górki Zachodnie, Rudniki, Olszynka, Orunia- Św.Wojciech-Lipce, Chełm, Wzgórze Mickiewicza</item>
+        <item>Wyspa Sobieszewska, Krakowiec-Górki Zachodnie, Rudniki, Olszynka, Orunia- Św.Wojciech-Lipce, Chełm, Wzgórze Mickiewicza</item>
         <item>Stogi, Przeróbka, Nowy Port, Letnica, Młyniska, Śródmieście</item>
         <item>Brzeźno, Wrzeszcz Dolny, Wrzeszcz Górny, Aniołki, Strzyża</item>
         <item>Przymorze Wielkie, Przymorze Małe, Zaspa Młyniec, Zaspa Rozstaje</item>
@@ -69,9 +69,7 @@
         <item>1</item>
         <item>0</item>
     </string-array>
-    <string-array name="pref_czas_przed_wystawka_defaultvalues">
-    </string-array>
-
+    <string-array name="pref_czas_przed_wystawka_defaultvalues"></string-array>
 
 
     <string name="pref_title_czas_przed_wywozem_suchych">Okres przed wywozem suchych</string>
@@ -93,8 +91,7 @@
         <item>1</item>
         <item>0</item>
     </string-array>
-    <string-array name="pref_czas_przed_wywozem_suchych_defaultvalues">
-    </string-array>
+    <string-array name="pref_czas_przed_wywozem_suchych_defaultvalues"></string-array>
 
 
     <string name="pref_title_czas_przed_wywozem_mokrych">Okres przed wywozem mokrych</string>
@@ -116,8 +113,7 @@
         <item>1</item>
         <item>0</item>
     </string-array>
-    <string-array name="pref_czas_przed_wywozem_mokrych_defaultvalues">
-    </string-array>
+    <string-array name="pref_czas_przed_wywozem_mokrych_defaultvalues"></string-array>
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Powiadomienia</string>
 
@@ -129,4 +125,7 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="title_activity_main_tab">Pamiętaj Wyrzuć.to</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
 </resources>
