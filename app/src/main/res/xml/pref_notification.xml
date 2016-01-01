@@ -21,44 +21,50 @@
         android:positiveButtonText="@null"
         android:title="@string/pref_title_czas_przed_wystawka" />
 
-    <MultiSelectListPreference
-        android:title="@string/pref_title_czas_przed_wystawka"
-        android:key="POWIADOMIENIA_WYSTAWKI_CZASS"
-        android:dependency="POWIADOMIENIA_WYSTAWKI"
-        android:entries="@array/pref_czas_przed_wystawka_title"
-        android:entryValues="@array/pref_czas_przed_wystawka_values"
-        android:defaultValue="@array/pref_czas_przed_wystawka_defaultvalues"
-        android:dialogTitle="@string/pref_title_czas_przed_wystawka"
-        >
-    </MultiSelectListPreference>
 
     <SwitchPreference
         android:defaultValue="true"
         android:key="POWIADOMIENIA_WYWOZ_SUCHE"
         android:title="@string/pref_title_wywoz_suche" />
-    <MultiSelectListPreference
-        android:title="@string/pref_title_czas_przed_wywozem_suchych"
-        android:key="POWIADOMIENIA_WYWOZ_SUCHE_CZAS"
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_czas_przed_smieci_title"
+        android:entryValues="@array/pref_czas_przed_smieci_values"
+        android:key="POWIADOMIENIA_SMIECI_SUCHE"
         android:dependency="POWIADOMIENIA_WYWOZ_SUCHE"
-        android:entries="@array/pref_czas_przed_wywozem_suchych_title"
-        android:entryValues="@array/pref_czas_przed_wywozem_suchych_values"
-        android:defaultValue="@array/pref_czas_przed_wywozem_suchych_defaultvalues"
-        android:dialogTitle="@string/pref_title_czas_przed_wywozem_suchych"
-        >
-    </MultiSelectListPreference>
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_wywoz_suche" />
 
     <SwitchPreference
         android:defaultValue="true"
         android:key="POWIADOMIENIA_WYWOZ_MOKRE"
         android:title="@string/pref_title_wywoz_mokre" />
-    <MultiSelectListPreference
-        android:title="@string/pref_title_czas_przed_wywozem_mokrych"
-        android:key="POWIADOMIENIA_WYWOZ_MOKRE_CZAS"
+
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_czas_przed_smieci_title"
+        android:entryValues="@array/pref_czas_przed_smieci_values"
+        android:key="POWIADOMIENIA_SMIECI_MOKRE"
         android:dependency="POWIADOMIENIA_WYWOZ_MOKRE"
-        android:entries="@array/pref_czas_przed_wywozem_mokrych_title"
-        android:entryValues="@array/pref_czas_przed_wywozem_mokrych_values"
-        android:defaultValue="@array/pref_czas_przed_wywozem_mokrych_defaultvalues"
-        android:dialogTitle="@string/pref_title_czas_przed_wywozem_mokrych"
-        >
-    </MultiSelectListPreference>
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_wywoz_mokre" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="POWIADOMIENIA_WYWOZ_ZMIESZANE"
+        android:title="@string/pref_title_wywoz_mokre" />
+
+    <ListPreference
+        android:defaultValue="0"
+        android:entries="@array/pref_czas_przed_smieci_title"
+        android:entryValues="@array/pref_czas_przed_smieci_values"
+        android:key="POWIADOMIENIA_SMIECI_ZMIESZANE"
+        android:dependency="POWIADOMIENIA_WYWOZ_ZMIESZANE"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_wywoz_zmieszane" />
+
+
 </PreferenceScreen>

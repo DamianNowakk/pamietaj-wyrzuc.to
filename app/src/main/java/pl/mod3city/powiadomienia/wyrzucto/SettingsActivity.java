@@ -227,6 +227,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // updated to reflect the new value, per the Android Design
             // guidelines.
             bindPreferenceSummaryToValue(findPreference("POWIADOMIENIA_WYSTAWKI_CZAS"));
+            bindPreferenceSummaryToValue(findPreference("POWIADOMIENIA_SMIECI_SUCHE"));
+            bindPreferenceSummaryToValue(findPreference("POWIADOMIENIA_SMIECI_MOKRE"));
+            bindPreferenceSummaryToValue(findPreference("POWIADOMIENIA_SMIECI_ZMIESZANE"));
         }
 
         @Override

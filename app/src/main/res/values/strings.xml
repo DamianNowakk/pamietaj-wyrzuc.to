@@ -69,6 +69,15 @@
         <item>1</item>
         <item>0</item>
     </string-array>
+
+    <string-array name="pref_czas_przed_smieci_title">
+        <item>Dzien wcześniej</item>
+        <item>W dzień wywozu śmieci</item>
+    </string-array>
+    <string-array name="pref_czas_przed_smieci_values">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
     <string-array name="pref_czas_przed_wystawka_defaultvalues"></string-array>
 
 
@@ -120,6 +129,7 @@
     <string name="pref_title_wystawki">Powiadomienia o wystawkach</string>
     <string name="pref_title_wywoz_suche">Powiadomienia o wywozie suchych</string>
     <string name="pref_title_wywoz_mokre">Powiadomienia o wywozie mokrych</string>
+    <string name="pref_title_wywoz_zmieszane">Powiadomienia o wywozie zmieszanych</string>
 
     <string name="pref_title_ringtone">Ringtone</string>
     <string name="pref_ringtone_silent">Silent</string>
