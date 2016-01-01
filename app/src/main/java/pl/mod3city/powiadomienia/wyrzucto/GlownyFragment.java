@@ -1,6 +1,5 @@
 package pl.mod3city.powiadomienia.wyrzucto;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -19,7 +18,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 
-public class MainActivity extends Fragment {
+public class GlownyFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,6 +27,8 @@ public class MainActivity extends Fragment {
         wyswietlanieDni(getContext(),rootView);
         return rootView;
     }
+
+
 
     public void wyswietlanieDni(Context context,View view){
         String suche = new String();
