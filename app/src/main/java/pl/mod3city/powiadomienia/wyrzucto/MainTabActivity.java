@@ -66,15 +66,15 @@ public class MainTabActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_tab);
 
-
-        //Dymek z napisem
         final Context context = getApplicationContext();
+/*        //Dymek z napisem
+
         CharSequence text = "Witaj! Aby odswieżyć widok naciśnij przycisk synchronizacji.";
         int duration = Toast.LENGTH_LONG;
         duration++;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
-        //Koniec dymku
+        //Koniec dymku*/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -87,7 +87,7 @@ public class MainTabActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         //setAlarm();
-        startAlarmManager();
+       //startAlarmManager();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -112,7 +112,7 @@ public class MainTabActivity extends AppCompatActivity {
                     Snackbar.make(view, "Brak połączenia z internetem", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
-                    //Po naciśnięciu różowego przycisku odświeżane są dane BIHAPI
+                    //Po naciśnięciu różowego przycisku odświeżane są dane BIHAPI - zwykłe śmieci
                     RestClient.getInstance().pobierzJsonaOdpadyMokreSucheZmieszaneDanaUlica(new JsonResponse() {
                         //Dzięki temu pieknemu zabiegowi, po pobraniu danych z Resta zostanie wywowołana poniższa metoda
                         @Override
@@ -134,7 +134,7 @@ public class MainTabActivity extends AppCompatActivity {
 
                             } else {
                                 //Serwer zwrócił błąd
-                                Snackbar.make(view, "Brak danych do pobrania. Sprawdź nazwę ulicy w ustawieniach.", Snackbar.LENGTH_LONG)
+                                Snackbar.make(view, "Brak danych do pobrania dla wywozu śmieci. Sprawdź nazwę ulicy w ustawieniach.", Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();
                                  /*
                                  CharSequence text1 = "Brak danych do pobrania. Sprawdź nazwę ulicy w ustawieniach.";
@@ -145,6 +145,34 @@ public class MainTabActivity extends AppCompatActivity {
                             }
                         }
                     }, getBaseContext());
+
+                 /*   //Wystawki
+                    RestClient.getInstance().pobierzJsonaWystawki(new JsonResponse() {
+                        //Dzięki temu pieknemu zabiegowi, po pobraniu danych z Resta zostanie wywowołana poniższa metoda
+                        @Override
+                        public void onJsonResponse(boolean success, JSONObject response) {
+                            //Tu możemy parsować Json lub przekazać go do klasy JsonParser do dalszej obróbki
+                            Log.i("mainActivity", response.toString());
+                            //Wywołanie parsowania
+
+                            JSONParser parser = new JSONParser();
+
+                            if (success) {
+                                //Nowe parsowanie
+
+                            } else {
+                                //Serwer zwrócił błąd
+                                Snackbar.make(view, "Brak danych do pobrania dla wystawek. Sprawdź nazwę ulicy w ustawieniach.", Snackbar.LENGTH_LONG)
+                                        .setAction("Action", null).show();
+                                 *//*
+                                 CharSequence text1 = "Brak danych do pobrania. Sprawdź nazwę ulicy w ustawieniach.";
+                                int duration2 = Toast.LENGTH_LONG;
+                                Toast brakDanych = Toast.makeText(context, text1, duration2);
+                                brakDanych.show();
+                                *//*
+                            }
+                        }
+                    }, getBaseContext());*/
                 }
             }
         });
@@ -252,7 +280,7 @@ public class MainTabActivity extends AppCompatActivity {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
         private GlownyFragment glo;
         private WystawkiFragment wys;
         private SegregowanieFragment seg;

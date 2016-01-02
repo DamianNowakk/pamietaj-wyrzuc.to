@@ -19,6 +19,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 
@@ -90,6 +91,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             return true;
         }
     };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("tag", "koniec ustawien");
+
+    }
 
     /**
      * Helper method to determine if the device has an extra-large screen. For

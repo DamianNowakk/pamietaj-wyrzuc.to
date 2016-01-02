@@ -1,21 +1,162 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    tools:context=".WystawkiFragment">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".WystawkiFragment"
+    android:background="#0ab334"
+    android:weightSum="1"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView" >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView2"
-        android:layout_gravity="left|center_vertical" />
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center">
 
-</FrameLayout>
+            <TableRow
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.24"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:text="Wystawki"
+                    android:id="@+id/infoOdbior"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.90">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance.Large"
+                        android:text="Najbliższa"
+                        android:id="@+id/Wystawka"
+                        android:textAlignment="center"
+                        android:textColor="#ffffff" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Medium Text"
+                        android:id="@+id/najblizszaWystawka"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp" />
+
+
+
+                </LinearLayout>
+            </TableRow>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            </TableLayout>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TableRow
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.24"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Wszelkiego rodzaju odpady, które ze względu na duże rozmiary i/lub wagę nie mieszczą się do pojemnika na pozostałe śmieci, mogą być utylizowane jako odpady wielkogabarytowe.
+
+Na przykład: stoły, szafy, krzesła, sofy, dywany, wózki dziecięce, meterace, pierzyny, sieci na pranie, rowery, zabawki dużych rozmiarów etc. "
+                        android:id="@+id/infoWystawka"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp" />
+
+
+                </TableRow>
+
+
+            </TableLayout>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.24"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance.Large"
+                        android:text="Pamiętaj!"
+                        android:id="@+id/infoOdbiaaaaaor"
+                        android:textAlignment="center"
+                        android:textColor="#ffffff" />
+
+
+                </TableRow>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TableRow
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.24"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Do odpadów wielkogabarytowych nie należą wszelkiego rodzaju części budowlane i sanitarne takie jak deski drewniane, belki, panele, ramy okienne, drzwi, płoty, wanny, umywalki, muszle toaletowe lub spłuczki, grzejniki, płytki, rolety jak również części samochodowe, motorowery, kosiarki spalinowe, odpady remontowe, odpady ogrodowe, worki na śmieci lub kartony z odpadami domowymi. "
+                        android:id="@+id/infoWystaaaaawka"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp" />
+
+
+                </TableRow>
+
+
+            </TableLayout>
+        </TableLayout>
+    </ScrollView>
+</TableLayout>
