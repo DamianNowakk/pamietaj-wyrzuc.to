@@ -66,15 +66,15 @@ public class MainTabActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_tab);
 
-
-        //Dymek z napisem
         final Context context = getApplicationContext();
+/*        //Dymek z napisem
+
         CharSequence text = "Witaj! Aby odswieżyć widok naciśnij przycisk synchronizacji.";
         int duration = Toast.LENGTH_LONG;
         duration++;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
-        //Koniec dymku
+        //Koniec dymku*/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -87,7 +87,7 @@ public class MainTabActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         //setAlarm();
-        startAlarmManager();
+       //startAlarmManager();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -280,7 +280,7 @@ public class MainTabActivity extends AppCompatActivity {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
         private GlownyFragment glo;
         private WystawkiFragment wys;
         private SegregowanieFragment seg;
