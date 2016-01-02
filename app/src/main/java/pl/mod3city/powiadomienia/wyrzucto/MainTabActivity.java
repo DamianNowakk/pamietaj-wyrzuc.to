@@ -1,5 +1,12 @@
 package pl.mod3city.powiadomienia.wyrzucto;
 
+import android.annotation.TargetApi;
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.os.Build;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.content.Context;
@@ -9,6 +16,7 @@ import android.net.NetworkInfo;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -25,6 +33,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import org.json.JSONObject;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 
 public class MainTabActivity extends AppCompatActivity {
@@ -45,10 +56,16 @@ public class MainTabActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private String[] tabs = {"Zwykłe śmieci", "Wystawki", "Jak segregować"};
 
+    NotificationManager notificationManager;
+    boolean isNotificActive = false;
+    int notifID = 33;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_tab);
+
 
         //Dymek z napisem
         final Context context = getApplicationContext();
@@ -69,6 +86,8 @@ public class MainTabActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        //setAlarm();
+        startAlarmManager();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -157,6 +176,78 @@ public class MainTabActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    /*@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void showNotification()
+    {
+        NotificationCompat.Builder notificBuilder = new
+                NotificationCompat.Builder(this)
+                .setContentTitle("Message")
+                .setContentText("New text")
+                .setTicker("Alert new message")
+                .setSmallIcon(R.drawable.ic_suche_icon);
+
+        Intent moreInfoIntent = new Intent(this, MoreInfoNotification.class);
+
+        TaskStackBuilder tStackBuilder = TaskStackBuilder.create(this);
+
+        tStackBuilder.addParentStack(MoreInfoNotification.class);
+
+        tStackBuilder.addNextIntent(moreInfoIntent);
+
+        PendingIntent pendingIntent = tStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        notificBuilder.setContentIntent(pendingIntent);
+
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.notify(notifID, notificBuilder.build());
+
+        isNotificActive = true;
+    }
+
+    public void stopNotification()
+    {
+        if(isNotificActive)
+        {
+            notificationManager.cancel(notifID);
+        }
+    }*/
+
+    public void setAlarm()
+    {
+        Long alertTime = new GregorianCalendar().getTimeInMillis()+5*1000;
+        Intent alertIntent = new Intent(this, AlertReceiver.class);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        PendingIntent pi = PendingIntent.getBroadcast(this, 0, alertIntent, 0);
+
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000, pi);
+    }
+
+    public void startAlarmManager()
+    {
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(Calendar.MONTH, 1);
+        calendar.set(Calendar.YEAR, 2016);
+        calendar.set(Calendar.DAY_OF_MONTH, 2);
+
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 10);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.AM_PM,Calendar.PM);
+
+        Intent dialogIntent = new Intent(getBaseContext(), AlertReceiver.class);
+
+        AlarmManager alarmMgr = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, dialogIntent,PendingIntent.FLAG_CANCEL_CURRENT);
+
+        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis()- System.currentTimeMillis(), 10000, pendingIntent);
 
     }
 
