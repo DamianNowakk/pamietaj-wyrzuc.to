@@ -6,6 +6,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -16,6 +17,7 @@ import android.preference.ListPreference;
 import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.SwitchPreference;
 import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -48,12 +50,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */
+
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
 
-            if (preference instanceof MultiSelectListPreference) {
+            if (preference instanceof SwitchPreference) {
 
             }
             else if (preference instanceof ListPreference) {
@@ -103,26 +106,29 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        Calendar calendar = Calendar.getInstance();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        if (sharedPref.getBoolean("POWIADOMIENIA_WYSTAWKI",false)){
 
-        calendar.set(Calendar.MONTH, Calendar.JANUARY);
-        calendar.set(Calendar.YEAR, 2016);
-        calendar.set(Calendar.DAY_OF_MONTH, 2);
+            Calendar calendar = Calendar.getInstance();
 
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 10);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.AM_PM,Calendar.PM);
+            calendar.set(Calendar.MONTH, Calendar.JANUARY);
+            calendar.set(Calendar.YEAR, 2016);
+            calendar.set(Calendar.DAY_OF_MONTH, 2);
 
-        Intent dialogIntent = new Intent(getBaseContext(), MokreReceiver.class);
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 10);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.AM_PM, Calendar.PM);
 
-        AlarmManager alarmMgr = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+            Intent dialogIntent = new Intent(getBaseContext(), MokreReceiver.class);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, dialogIntent,PendingIntent.FLAG_UPDATE_CURRENT|  Intent.FILL_IN_DATA);
+            AlarmManager alarmMgr = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 
-        //alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), 10000, pendingIntent);
-        alarmMgr.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(), pendingIntent);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
 
+            //alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), 10000, pendingIntent);
+            alarmMgr.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pendingIntent);
+        }
     }
 
     /**
