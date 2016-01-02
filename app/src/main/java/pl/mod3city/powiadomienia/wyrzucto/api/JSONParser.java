@@ -241,6 +241,17 @@ public class JSONParser {
             return najblizszyDzien(listaZmieszanych);
         }
     }
+    public ArrayList<String> najblizszeDniSmieci(rodzajSmieci rodz) {
+    if(rodz == rodzajSmieci.MOKRE){
+        return listaMokrych;
+
+    }else if(rodz == rodzajSmieci.SUCHE){
+        return listaSuchych;
+    }else{
+        return listaZmieszanych;
+    }
+
+    }
 
 
 }
