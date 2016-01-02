@@ -75,7 +75,7 @@
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="4dp"
+                android:layout_height="1dp"
                 android:background="@android:color/darker_gray"/>
 
             </TableLayout>
@@ -147,7 +147,7 @@ Na przykład: stoły, szafy, krzesła, sofy, dywany, wózki dziecięce, meterace
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text=" Do odpadów wielkogabarytowych nie należą wszelkiego rodzaju części budowlane i sanitarne takie jak deski drewniane, belki, panele, ramy okienne, drzwi, płoty, wanny, umywalki, muszle toaletowe lub spłuczki, grzejniki, płytki, rolety jak również części samochodowe, motorowery, kosiarki spalinowe, odpady remontowe, odpady ogrodowe, worki na śmieci lub kartony z odpadami domowymi. "
+                        android:text="Do odpadów wielkogabarytowych nie należą wszelkiego rodzaju części budowlane i sanitarne takie jak deski drewniane, belki, panele, ramy okienne, drzwi, płoty, wanny, umywalki, muszle toaletowe lub spłuczki, grzejniki, płytki, rolety jak również części samochodowe, motorowery, kosiarki spalinowe, odpady remontowe, odpady ogrodowe, worki na śmieci lub kartony z odpadami domowymi. "
                         android:id="@+id/infoWystaaaaawka"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp" />
