@@ -56,9 +56,6 @@ public class MainTabActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private String[] tabs = {"Zwykłe śmieci", "Wystawki", "Jak segregować"};
 
-    NotificationManager notificationManager;
-    boolean isNotificActive = false;
-    int notifID = 33;
 
 
     @Override
@@ -86,8 +83,7 @@ public class MainTabActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        //setAlarm();
-       //startAlarmManager();
+       startAlarmManager();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -179,60 +175,12 @@ public class MainTabActivity extends AppCompatActivity {
 
     }
 
-    /*@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void showNotification()
-    {
-        NotificationCompat.Builder notificBuilder = new
-                NotificationCompat.Builder(this)
-                .setContentTitle("Message")
-                .setContentText("New text")
-                .setTicker("Alert new message")
-                .setSmallIcon(R.drawable.ic_suche_icon);
-
-        Intent moreInfoIntent = new Intent(this, MoreInfoNotification.class);
-
-        TaskStackBuilder tStackBuilder = TaskStackBuilder.create(this);
-
-        tStackBuilder.addParentStack(MoreInfoNotification.class);
-
-        tStackBuilder.addNextIntent(moreInfoIntent);
-
-        PendingIntent pendingIntent = tStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        notificBuilder.setContentIntent(pendingIntent);
-
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        notificationManager.notify(notifID, notificBuilder.build());
-
-        isNotificActive = true;
-    }
-
-    public void stopNotification()
-    {
-        if(isNotificActive)
-        {
-            notificationManager.cancel(notifID);
-        }
-    }*/
-
-    public void setAlarm()
-    {
-        Long alertTime = new GregorianCalendar().getTimeInMillis()+5*1000;
-        Intent alertIntent = new Intent(this, AlertReceiver.class);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-        PendingIntent pi = PendingIntent.getBroadcast(this, 0, alertIntent, 0);
-
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000, pi);
-    }
 
     public void startAlarmManager()
     {
         Calendar calendar = Calendar.getInstance();
 
-        calendar.set(Calendar.MONTH, 1);
+        calendar.set(Calendar.MONTH, Calendar.JANUARY);
         calendar.set(Calendar.YEAR, 2016);
         calendar.set(Calendar.DAY_OF_MONTH, 2);
 
@@ -245,9 +193,10 @@ public class MainTabActivity extends AppCompatActivity {
 
         AlarmManager alarmMgr = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, dialogIntent,PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, dialogIntent,PendingIntent.FLAG_UPDATE_CURRENT|  Intent.FILL_IN_DATA);
 
-        alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis()- System.currentTimeMillis(), 10000, pendingIntent);
+        //alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), 10000, pendingIntent);
+        alarmMgr.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), pendingIntent);
 
     }
 
