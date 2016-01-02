@@ -2,6 +2,8 @@ package pl.mod3city.powiadomienia.wyrzucto.activities;
 
 
 import android.annotation.TargetApi;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -23,9 +25,12 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 
+import java.util.Calendar;
 import java.util.List;
 
+import pl.mod3city.powiadomienia.wyrzucto.MokreReceiver;
 import pl.mod3city.powiadomienia.wyrzucto.R;
+import pl.mod3city.powiadomienia.wyrzucto.SucheReceiver;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -97,6 +102,36 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(Calendar.MONTH, Calendar.JANUARY);
+        calendar.set(Calendar.YEAR, 2016);
+        calendar.set(Calendar.DAY_OF_MONTH, 2);
+
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 10);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.AM_PM,Calendar.PM);
+
+        Intent dialogIntent = new Intent(getBaseContext(), MokreReceiver.class);
+
+        AlarmManager alarmMgr = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, dialogIntent,PendingIntent.FLAG_UPDATE_CURRENT|  Intent.FILL_IN_DATA);
+
+        //alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), 10000, pendingIntent);
+        alarmMgr.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(), pendingIntent);
+
+        Intent dialogIntent2 = new Intent(getBaseContext(), SucheReceiver.class);
+
+        AlarmManager alarmMgr2 = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+
+        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this, 1, dialogIntent2,PendingIntent.FLAG_UPDATE_CURRENT|  Intent.FILL_IN_DATA);
+
+        //alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), 10000, pendingIntent);
+        alarmMgr2.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 5000, pendingIntent2);
+
         Log.i("tag", "koniec ustawien");
 
     }
