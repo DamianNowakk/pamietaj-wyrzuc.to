@@ -37,8 +37,9 @@
         </activity>
 
 
-        <receiver android:name=".AlertReceiver"></receiver>
-
+        <receiver android:name=".MokreReceiver"></receiver>
+        <receiver android:name=".SucheReceiver"></receiver>
+        <receiver android:name=".ZmieszaneReceiver"></receiver>
 
     </application>
 

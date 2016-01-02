@@ -1,8 +1,5 @@
 package pl.mod3city.powiadomienia.wyrzucto.activities;
 
-import android.app.AlarmManager;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
@@ -26,10 +23,6 @@ import android.view.View;
 
 import org.json.JSONObject;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
-import pl.mod3city.powiadomienia.wyrzucto.AlertReceiver;
 import pl.mod3city.powiadomienia.wyrzucto.api.JSONParser;
 import pl.mod3city.powiadomienia.wyrzucto.res.JsonResponse;
 import pl.mod3city.powiadomienia.wyrzucto.R;
@@ -76,7 +69,6 @@ public class MainTabActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-       startAlarmManager();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -159,29 +151,7 @@ public class MainTabActivity extends AppCompatActivity {
     }
 
 
-    public void startAlarmManager()
-    {
-        Calendar calendar = Calendar.getInstance();
 
-        calendar.set(Calendar.MONTH, Calendar.JANUARY);
-        calendar.set(Calendar.YEAR, 2016);
-        calendar.set(Calendar.DAY_OF_MONTH, 2);
-
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 10);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.AM_PM,Calendar.PM);
-
-        Intent dialogIntent = new Intent(getBaseContext(), AlertReceiver.class);
-
-        AlarmManager alarmMgr = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, dialogIntent,PendingIntent.FLAG_UPDATE_CURRENT|  Intent.FILL_IN_DATA);
-
-        //alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), 10000, pendingIntent);
-        alarmMgr.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), pendingIntent);
-
-    }
 
 
     @Override
