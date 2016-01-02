@@ -37,7 +37,7 @@
         </activity>
 
 
-        <receiver android:process=":remote" android:name=".AlertReceiver"></receiver>
+        <receiver android:name=".AlertReceiver"></receiver>
 
     </application>
 

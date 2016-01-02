@@ -13,13 +13,13 @@ import android.support.v4.app.NotificationCompat;
 public class AlertReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        createNotification(context,"time up", "5 second", "alert");
+        createNotification(context,"Wyrzuc.to", "Twoje smieci czekaja", "Przypomnienie");
     }
 
     public void createNotification(Context context, String msg, String msgText, String msgAlert)
     {
         PendingIntent notificIntent = PendingIntent.getActivity(context, 0,
-                new Intent(context, MainTabActivity.class), 0);
+                new Intent(context, MoreInfoNotification.class), 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                 .setContentTitle(msg)
