@@ -18,16 +18,16 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainTabActivity">
+            android:parentActivityName=".activities.MainTabActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="pl.mod3city.powiadomienia.wyrzucto.MainTabActivity" />
+                android:value=".activities.MainTabActivity" />
         </activity>
 
         <activity
-            android:name=".MainTabActivity"
+            android:name=".activities.MainTabActivity"
             android:label="@string/title_activity_main_tab"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".WystawkiFragment"
+    tools:context=".fragments.WystawkiFragment"
     android:background="#0ab334"
     android:weightSum="1"
     android:orientation="vertical">
@@ -63,10 +63,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Medium Text"
+                        android:text="@string/brakDanych"
                         android:id="@+id/najblizszaWystawka"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp" />
 
 
 
@@ -98,7 +99,9 @@
 Na przykład: stoły, szafy, krzesła, sofy, dywany, wózki dziecięce, meterace, pierzyny, sieci na pranie, rowery, zabawki dużych rozmiarów etc. "
                         android:id="@+id/infoWystawka"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="10dp"
+                        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                        android:layout_marginBottom="10dp" />
 
 
                 </TableRow>
@@ -114,7 +117,8 @@ Na przykład: stoły, szafy, krzesła, sofy, dywany, wózki dziecięce, meterace
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.24"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:layout_marginBottom="10dp">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -150,7 +154,8 @@ Na przykład: stoły, szafy, krzesła, sofy, dywany, wózki dziecięce, meterace
                         android:text="Do odpadów wielkogabarytowych nie należą wszelkiego rodzaju części budowlane i sanitarne takie jak deski drewniane, belki, panele, ramy okienne, drzwi, płoty, wanny, umywalki, muszle toaletowe lub spłuczki, grzejniki, płytki, rolety jak również części samochodowe, motorowery, kosiarki spalinowe, odpady remontowe, odpady ogrodowe, worki na śmieci lub kartony z odpadami domowymi. "
                         android:id="@+id/infoWystaaaaawka"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="20dp"
+                        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle" />
 
 
                 </TableRow>

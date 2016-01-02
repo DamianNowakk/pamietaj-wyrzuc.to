@@ -1,4 +1,4 @@
-package pl.mod3city.powiadomienia.wyrzucto;
+package pl.mod3city.powiadomienia.wyrzucto.res;
 
 import org.json.JSONObject;
 

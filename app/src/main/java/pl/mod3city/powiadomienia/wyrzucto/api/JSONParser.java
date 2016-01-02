@@ -1,42 +1,102 @@
-package pl.mod3city.powiadomienia.wyrzucto;
+package pl.mod3city.powiadomienia.wyrzucto.api;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.os.Bundle;
-
 import android.util.Log;
 import android.view.View;
-
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
+import pl.mod3city.powiadomienia.wyrzucto.R;
+import pl.mod3city.powiadomienia.wyrzucto.res.rodzajSmieci;
 
-public class GlownyFragment extends Fragment {
+/**
+ * Created by Mikołaj on 2015-12-21.
+ */
+public class JSONParser {
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                         Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.content_main,container,false);
-        wyswietlanieDni(getContext(),rootView);
-        return rootView;
+    private static JSONParser ourInstance;
+    private ArrayList<String> listaSuchych = new ArrayList<String>();
+    private ArrayList<String> listaMokrych = new ArrayList<String>();
+    private ArrayList<String> listaZmieszanych = new ArrayList<String>();
+
+    JSONParser (){
     }
 
+    public static JSONParser getInstance() {
+        if(ourInstance == null) {
+            ourInstance = new JSONParser();
+        }
+        return ourInstance;
+    }
 
+    public void parseJSONtoArray(Context context, JSONObject response) {
+
+        try {
+            JSONArray arr = response.getJSONObject("results").getJSONArray("properties");
+            String[] tab = new String[arr.length()];
+            int licznik=0;
+            for (int i = 0; i < arr.length(); i++) {
+                if (arr.getJSONObject(i).getString("value").equals("x")) {
+                    tab[licznik] = arr.getJSONObject(i).getString("key");
+                    licznik++;
+                }
+            }
+            String[] tabelaDni = new String[licznik];
+            for(int i=0; i<licznik; i++){
+                tabelaDni[i] = tab[i];
+            }
+
+            String suche = new String();
+            String mokre = new String();
+            String zmieszane = new String();
+
+            for (String dzien : tabelaDni) {
+                if(dzien.contains("Suche")){
+                    suche += dzien.substring(6);
+                    suche += "\n";
+                }
+                else if(dzien.contains("Mokre")){
+                    mokre += dzien.substring(6);
+                    mokre += "\n";
+                }
+                else if(dzien.contains("Zmieszane")){
+                    zmieszane += dzien.substring(10);
+                    zmieszane += "\n";
+                }
+            }
+            File fileSuche = new File(context.getFilesDir(), "suche.txt");
+            PrintWriter sucheZapis = new PrintWriter(fileSuche);
+            sucheZapis.print(suche);
+            sucheZapis.close();
+
+            File fileMokre = new File(context.getFilesDir(), "mokre.txt");
+            PrintWriter mokreZapis = new PrintWriter(fileMokre);
+            mokreZapis.print(mokre);
+            mokreZapis.close();
+
+            File fileZmieszane = new File(context.getFilesDir(), "zmieszane.txt");
+            PrintWriter zmieszaneZapis = new PrintWriter(fileZmieszane);
+            zmieszaneZapis.print(zmieszane);
+            zmieszaneZapis.close();
+
+        } catch (Exception e) {
+            Log.i("blad",e.toString());
+        }
+
+    }
 
     public void wyswietlanieDni(Context context,View view){
         String suche = new String();
         String mokre = new String();
         String zmieszane = new String();
-        ArrayList<String> listaSuchych = new ArrayList<String>();
-        ArrayList<String> listaMokrych = new ArrayList<String>();
-        ArrayList<String> listaZmieszanych = new ArrayList<String>();
 
         TextView mokreKazdy = (TextView) view.findViewById(R.id.odbiorMokreKazdy);
         TextView mokreNastepne = (TextView) view.findViewById(R.id.odbiorMokreNastepne);
@@ -171,5 +231,16 @@ public class GlownyFragment extends Fragment {
             dayOfWeekNow++;
         }
     }
+
+    public String najblizszyDzienSmieci(rodzajSmieci rodzaj){
+        if(rodzaj == rodzajSmieci.MOKRE){
+            return najblizszyDzien(listaMokrych);
+        }else if(rodzaj == rodzajSmieci.SUCHE){
+            return najblizszyDzien(listaSuchych);
+        }else{
+            return najblizszyDzien(listaZmieszanych);
+        }
+    }
+
 
 }

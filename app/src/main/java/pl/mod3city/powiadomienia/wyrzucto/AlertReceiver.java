@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
+import pl.mod3city.powiadomienia.wyrzucto.activities.MainTabActivity;
+
 /**
  * Created by Baniek on 2016-01-01.
  */

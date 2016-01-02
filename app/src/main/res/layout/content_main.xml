@@ -63,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/brakDanych"
                     android:id="@+id/odbiorMokreKazdy"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp" />
@@ -82,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/brakDanych"
                     android:id="@+id/odbiorMokreNastepne"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp" />
@@ -138,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/brakDanych"
                     android:id="@+id/odbiorSucheKazdy"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp" />
@@ -157,7 +157,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/brakDanych"
                     android:id="@+id/odbiorSucheNastepne"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp" />
@@ -211,7 +211,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Medium Text"
+                        android:text="@string/brakDanych"
                         android:id="@+id/odbiorZmieszaneKazdy"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp" />
@@ -230,7 +230,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Medium Text"
+                        android:text="@string/brakDanych"
                         android:id="@+id/odbiorZmieszaneNastepne"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp" />

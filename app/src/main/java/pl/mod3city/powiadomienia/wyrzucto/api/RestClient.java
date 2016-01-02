@@ -1,21 +1,18 @@
-package pl.mod3city.powiadomienia.wyrzucto;
+package pl.mod3city.powiadomienia.wyrzucto.api;
 import com.loopj.android.http.*;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.SocketTimeoutException;
 import java.security.KeyStore;
 
 import cz.msebera.android.httpclient.Header;
+import pl.mod3city.powiadomienia.wyrzucto.res.JsonResponse;
 
 
 public class RestClient{

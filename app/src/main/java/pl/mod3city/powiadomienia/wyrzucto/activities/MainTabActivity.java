@@ -1,14 +1,9 @@
-package pl.mod3city.powiadomienia.wyrzucto;
+package pl.mod3city.powiadomienia.wyrzucto.activities;
 
-import android.annotation.TargetApi;
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
-import android.os.Build;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -16,7 +11,6 @@ import android.net.NetworkInfo;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -30,12 +24,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import android.widget.Toast;
-
 import org.json.JSONObject;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import pl.mod3city.powiadomienia.wyrzucto.AlertReceiver;
+import pl.mod3city.powiadomienia.wyrzucto.api.JSONParser;
+import pl.mod3city.powiadomienia.wyrzucto.res.JsonResponse;
+import pl.mod3city.powiadomienia.wyrzucto.R;
+import pl.mod3city.powiadomienia.wyrzucto.api.RestClient;
+import pl.mod3city.powiadomienia.wyrzucto.fragments.GlownyFragment;
+import pl.mod3city.powiadomienia.wyrzucto.fragments.SegregowanieFragment;
+import pl.mod3city.powiadomienia.wyrzucto.fragments.WystawkiFragment;
 
 
 public class MainTabActivity extends AppCompatActivity {
@@ -67,14 +68,6 @@ public class MainTabActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_tab);
 
         final Context context = getApplicationContext();
-/*        //Dymek z napisem
-
-        CharSequence text = "Witaj! Aby odswieżyć widok naciśnij przycisk synchronizacji.";
-        int duration = Toast.LENGTH_LONG;
-        duration++;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-        //Koniec dymku*/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -120,28 +113,18 @@ public class MainTabActivity extends AppCompatActivity {
                             //Tu możemy parsować Json lub przekazać go do klasy JsonParser do dalszej obróbki
                             Log.i("mainActivity", response.toString());
                             //Wywołanie parsowania
-
-                            JSONParser parser = new JSONParser();
-
                             if (success) {
-                                parser.parseJSONtoArray(context, response);
+                                JSONParser.getInstance().parseJSONtoArray(context, response);
                                 //Przeładowanie widoku po pobraniu danych z BIHAPI
                                 Fragment currentFragment = mSectionsPagerAdapter.getItem(0);
                                 FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
                                 tr.detach(currentFragment);
                                 tr.attach(currentFragment);
                                 tr.commit();
-
                             } else {
                                 //Serwer zwrócił błąd
                                 Snackbar.make(view, "Brak danych do pobrania dla wywozu śmieci. Sprawdź nazwę ulicy w ustawieniach.", Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();
-                                 /*
-                                 CharSequence text1 = "Brak danych do pobrania. Sprawdź nazwę ulicy w ustawieniach.";
-                                int duration2 = Toast.LENGTH_LONG;
-                                Toast brakDanych = Toast.makeText(context, text1, duration2);
-                                brakDanych.show();
-                                */
                             }
                         }
                     }, getBaseContext());
@@ -276,14 +259,16 @@ public class MainTabActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-        private GlownyFragment glo;
-        private WystawkiFragment wys;
-        private SegregowanieFragment seg;
+
+            private GlownyFragment glo;
+            private WystawkiFragment wys;
+            private SegregowanieFragment seg;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -308,7 +293,6 @@ public class MainTabActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return tabs.length;
         }
 

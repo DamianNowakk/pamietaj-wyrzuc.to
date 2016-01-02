@@ -1,4 +1,4 @@
-package pl.mod3city.powiadomienia.wyrzucto;
+package pl.mod3city.powiadomienia.wyrzucto.fragments;
 
 
 import android.app.ProgressDialog;
@@ -13,6 +13,8 @@ import android.webkit.WebView;
 import android.widget.Toast;
 
 import java.io.InputStream;
+
+import pl.mod3city.powiadomienia.wyrzucto.R;
 
 
 /**

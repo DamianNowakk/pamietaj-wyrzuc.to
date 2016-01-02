@@ -1,4 +1,4 @@
-package pl.mod3city.powiadomienia.wyrzucto;
+package pl.mod3city.powiadomienia.wyrzucto.activities;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

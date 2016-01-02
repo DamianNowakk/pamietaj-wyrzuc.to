@@ -30,6 +30,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_sync_black_24dp"
-        style="@style/AlertDialog.AppCompat.Light" />
+        style="@style/AlertDialog.AppCompat" />
 
 </android.support.design.widget.CoordinatorLayout>
