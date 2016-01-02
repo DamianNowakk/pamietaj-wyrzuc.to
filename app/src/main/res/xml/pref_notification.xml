@@ -19,7 +19,8 @@
         android:dependency="POWIADOMIENIA_WYSTAWKI"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"
-        android:title="@string/pref_title_czas_przed_wystawka" />
+        android:title="@string/pref_title_czas_przed_wystawka"
+        />
 
 
     <SwitchPreference
@@ -54,7 +55,7 @@
     <SwitchPreference
         android:defaultValue="true"
         android:key="POWIADOMIENIA_WYWOZ_ZMIESZANE"
-        android:title="@string/pref_title_wywoz_mokre" />
+        android:title="@string/pref_title_wywoz_zmieszane" />
 
     <ListPreference
         android:defaultValue="0"
