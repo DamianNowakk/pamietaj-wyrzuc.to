@@ -123,17 +123,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         //alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), 10000, pendingIntent);
         alarmMgr.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(), pendingIntent);
 
-        Intent dialogIntent2 = new Intent(getBaseContext(), SucheReceiver.class);
-
-        AlarmManager alarmMgr2 = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-
-        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this, 1, dialogIntent2,PendingIntent.FLAG_UPDATE_CURRENT|  Intent.FILL_IN_DATA);
-
-        //alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), 10000, pendingIntent);
-        alarmMgr2.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+ 5000, pendingIntent2);
-
-        Log.i("tag", "koniec ustawien");
-
     }
 
     /**

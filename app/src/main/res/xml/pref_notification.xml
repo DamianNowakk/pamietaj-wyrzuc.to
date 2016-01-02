@@ -3,7 +3,7 @@
     <!-- A 'parent' preference, which enables/disables child preferences (below)
          when checked/unchecked. -->
     <SwitchPreference
-        android:defaultValue="true"
+        android:defaultValue="false"
         android:key="POWIADOMIENIA_WYSTAWKI"
         android:title="@string/pref_title_wystawki" />
 
@@ -24,7 +24,7 @@
 
 
     <SwitchPreference
-        android:defaultValue="true"
+        android:defaultValue="false"
         android:key="POWIADOMIENIA_WYWOZ_SUCHE"
         android:title="@string/pref_title_wywoz_suche" />
     <ListPreference
@@ -38,7 +38,7 @@
         android:title="@string/pref_title_wywoz_suche" />
 
     <SwitchPreference
-        android:defaultValue="true"
+        android:defaultValue="false"
         android:key="POWIADOMIENIA_WYWOZ_MOKRE"
         android:title="@string/pref_title_wywoz_mokre" />
 
@@ -53,7 +53,7 @@
         android:title="@string/pref_title_wywoz_mokre" />
 
     <SwitchPreference
-        android:defaultValue="true"
+        android:defaultValue="false"
         android:key="POWIADOMIENIA_WYWOZ_ZMIESZANE"
         android:title="@string/pref_title_wywoz_zmieszane" />
 
