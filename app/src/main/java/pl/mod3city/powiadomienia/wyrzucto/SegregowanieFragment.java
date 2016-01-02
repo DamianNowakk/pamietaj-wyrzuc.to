@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+
+import java.io.InputStream;
 
 
 /**
@@ -23,7 +26,12 @@ public class SegregowanieFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_segregowanie, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_segregowanie, container, false);
+        WebView webView = (WebView) rootView.findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        String pdf = "https://czystemiasto.gdansk.pl/ZDiZGdanskFiles/file/broszura_jaksegregowac_20140507.pdf";
+        webView.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url=" + pdf);
+        return rootView;
     }
 
 }
