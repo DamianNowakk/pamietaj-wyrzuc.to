@@ -14,7 +14,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
-import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.SwitchPreference;
@@ -23,16 +22,18 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import pl.mod3city.powiadomienia.wyrzucto.MokreReceiver;
 import pl.mod3city.powiadomienia.wyrzucto.R;
 import pl.mod3city.powiadomienia.wyrzucto.SucheReceiver;
+import pl.mod3city.powiadomienia.wyrzucto.api.JSONParser;
+import pl.mod3city.powiadomienia.wyrzucto.res.rodzajSmieci;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -50,6 +51,111 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */
+    SharedPreferences sharedPreferences;
+    SharedPreferences prefs;
+    private PreferenceChangeListener mPreferenceListener = null; // Preference change listener
+
+    AlarmManager[] alarmManagerSuche=new AlarmManager[24];
+    ArrayList<PendingIntent> intentArraySuche = new ArrayList<PendingIntent>();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setupActionBar();
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPreferenceListener = new PreferenceChangeListener();
+        prefs.registerOnSharedPreferenceChangeListener((SharedPreferences.OnSharedPreferenceChangeListener) mPreferenceListener);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    }
+
+    private class PreferenceChangeListener implements SharedPreferences.OnSharedPreferenceChangeListener {
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+
+            if(prefs.getBoolean("POWIADOMIENIA_WYSTAWKI",false) && key.equals("POWIADOMIENIA_WYSTAWKI")) {
+
+            }
+            else if(!prefs.getBoolean("POWIADOMIENIA_WYSTAWKI",false) && key.equals("POWIADOMIENIA_WYSTAWKI")){
+
+            }
+            if(prefs.getBoolean("POWIADOMIENIA_WYWOZ_SUCHE",false) && key.equals("POWIADOMIENIA_WYWOZ_SUCHE")) {
+                powiadomieniaSuche();
+            }
+            else if(!prefs.getBoolean("POWIADOMIENIA_WYWOZ_SUCHE",false) && key.equals("POWIADOMIENIA_WYWOZ_SUCHE")) {
+                Intent dialogIntent = new Intent(getBaseContext(), SucheReceiver.class);
+                int iloscPowiadomienSuchych = sharedPreferences.getInt("Suche", 0);
+                powiadomieniaDestroy(dialogIntent, iloscPowiadomienSuchych);
+            }
+            if(prefs.getBoolean("POWIADOMIENIA_WYWOZ_MOKRE",false) && key.equals("POWIADOMIENIA_WYWOZ_MOKRE")) {
+
+            }
+            else if(!prefs.getBoolean("POWIADOMIENIA_WYWOZ_MOKRE",false) && key.equals("POWIADOMIENIA_WYWOZ_MOKRE")) {
+
+            }
+            if(prefs.getBoolean("POWIADOMIENIA_WYWOZ_ZMIESZANE",false) && key.equals("POWIADOMIENIA_WYWOZ_ZMIESZANE")) {
+
+            }
+            else if(!prefs.getBoolean("POWIADOMIENIA_WYWOZ_ZMIESZANE",false) && key.equals("POWIADOMIENIA_WYWOZ_ZMIESZANE")) {
+
+            }
+            if(key.equals("POWIADOMIENIA_WYSTAWKI_CZAS")) {
+                //powiadomieniaSuche();
+            }
+            if(key.equals("POWIADOMIENIA_SMIECI_SUCHE")) {
+                //powiadomieniaSuche();
+            }
+            if(key.equals("POWIADOMIENIA_SMIECI_MOKRE")) {
+                //powiadomieniaSuche();
+            }
+            if(key.equals("POWIADOMIENIA_SMIECI_ZMIESZANE")) {
+                //powiadomieniaSuche();
+            }
+        }
+    }
+
+    public void powiadomieniaSuche() {
+        ArrayList<String> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.SUCHE);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.MONTH, Calendar.JANUARY);
+        calendar.set(Calendar.YEAR, 2016);
+        calendar.set(Calendar.DAY_OF_MONTH, 2);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 10);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.AM_PM, Calendar.PM);
+
+        SaveInt("Suche", 2);
+        for(int i = 0; i < 2; i++)
+        {
+            Intent dialogIntent = new Intent(getBaseContext(), SucheReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, i, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
+
+            alarmManagerSuche[i] = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+            alarmManagerSuche[i].setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+i*2000, 6000, pendingIntent);
+
+            intentArraySuche.add(pendingIntent);
+            //alarmMgr.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pendingIntent);
+        }
+    }
+    public void powiadomieniaDestroy(Intent dialogIntent, int iloscPowiadomienSuchych) {
+
+
+        for(int i=0; i<iloscPowiadomienSuchych;i++)
+        {
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, i, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
+            alarmManagerSuche[i] = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+            alarmManagerSuche[i].cancel(pendingIntent);
+        }
+    }
+
+    public void SaveInt(String key, int value){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(key, value);
+        editor.commit();
+    }
 
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
@@ -102,34 +208,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
     };
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        if (sharedPref.getBoolean("POWIADOMIENIA_WYSTAWKI",false)){
-
-            Calendar calendar = Calendar.getInstance();
-
-            calendar.set(Calendar.MONTH, Calendar.JANUARY);
-            calendar.set(Calendar.YEAR, 2016);
-            calendar.set(Calendar.DAY_OF_MONTH, 2);
-
-            calendar.set(Calendar.HOUR_OF_DAY, 0);
-            calendar.set(Calendar.MINUTE, 10);
-            calendar.set(Calendar.SECOND, 0);
-            calendar.set(Calendar.AM_PM, Calendar.PM);
-
-            Intent dialogIntent = new Intent(getBaseContext(), MokreReceiver.class);
-
-            AlarmManager alarmMgr = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
-
-            //alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), 10000, pendingIntent);
-            alarmMgr.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pendingIntent);
-        }
-    }
 
     /**
      * Helper method to determine if the device has an extra-large screen. For
@@ -161,11 +239,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         .getString(preference.getKey(), ""));
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setupActionBar();
-    }
 
     /**
      * Set up the {@link android.app.ActionBar}, if the API is available.
