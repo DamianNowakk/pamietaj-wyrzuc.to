@@ -52,12 +52,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */
-    //SharedPreferences sharedPreferences;
+
     SharedPreferences prefs;
     private PreferenceChangeListener mPreferenceListener = null; // Preference change listener
-
-    //AlarmManager[] alarmManagerSuche=new AlarmManager[24];
-    //ArrayList<PendingIntent> intentArraySuche = new ArrayList<PendingIntent>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,59 +99,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 //powiadomieniaSuche();
             }
             if(key.equals("POWIADOMIENIA_SMIECI_SUCHE")) {
-                //powiadomieniaSuche();
+                Powiadomienia.getInstance().powiadomieniaDestroySuche(getBaseContext());
+                Powiadomienia.getInstance().powiadomieniaSuche(getBaseContext());
             }
             if(key.equals("POWIADOMIENIA_SMIECI_MOKRE")) {
-                //powiadomieniaSuche();
+                Powiadomienia.getInstance().powiadomieniaDestroyMokre(getBaseContext());
+                Powiadomienia.getInstance().powiadomieniaMokre(getBaseContext());
             }
             if(key.equals("POWIADOMIENIA_SMIECI_ZMIESZANE")) {
-                //powiadomieniaSuche();
+                Powiadomienia.getInstance().powiadomieniaDestroyZmieszane(getBaseContext());
+                Powiadomienia.getInstance().powiadomieniaZmieszane(getBaseContext());
             }
         }
     }
-
-   /* public void powiadomieniaSuche() {
-        ArrayList<String> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.SUCHE);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.MONTH, Calendar.JANUARY);
-        calendar.set(Calendar.YEAR, 2016);
-        calendar.set(Calendar.DAY_OF_MONTH, 2);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 10);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.AM_PM, Calendar.PM);
-
-        SaveInt("Suche", 2);
-        for(int i = 0; i < 2; i++)
-        {
-            Intent dialogIntent = new Intent(getBaseContext(), SucheReceiver.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, i, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
-
-            alarmManagerSuche[i] = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-            alarmManagerSuche[i].setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+i*2000, 6000, pendingIntent);
-
-            intentArraySuche.add(pendingIntent);
-            //alarmMgr.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pendingIntent);
-        }
-    }
-    public void powiadomieniaDestroy(Intent dialogIntent, int iloscPowiadomienSuchych) {
-
-
-        for(int i=0; i<iloscPowiadomienSuchych;i++)
-        {
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, i, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
-            alarmManagerSuche[i] = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-            alarmManagerSuche[i].cancel(pendingIntent);
-        }
-    }
-
-    public void SaveInt(String key, int value){
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(key, value);
-        editor.commit();
-    }*/
 
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override

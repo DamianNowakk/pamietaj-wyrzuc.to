@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import java.util.Calendar;
+
 /**
  * Created by Baniek on 2016-01-03.
  */
@@ -27,6 +29,18 @@ public class Powiadomienia{
 
     public void powiadomieniaSuche(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        //ArrayList<String> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.SUCHE);
+
+        Calendar calendar = Calendar.getInstance();
+        //calendar.set(Calendar.MONTH, Calendar.JANUARY);
+        calendar.set(Calendar.DAY_OF_WEEK, 2);
+        //calendar.set(Calendar.YEAR, 2016);
+        //calendar.set(Calendar.DAY_OF_MONTH, 2);
+        calendar.set(Calendar.HOUR_OF_DAY, 22);
+        calendar.set(Calendar.MINUTE, 19);
+        calendar.set(Calendar.SECOND, 0);
+        //calendar.set(Calendar.AM_PM, Calendar.PM);
+        calendar.setTimeInMillis(System.currentTimeMillis());
 
         SaveInt("Suche", 1, context);
 
@@ -34,8 +48,7 @@ public class Powiadomienia{
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idSuche+0, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
 
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pendingIntent);
-
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 5000, pendingIntent);
     }
 
     public void powiadomieniaMokre(Context context) {
@@ -48,21 +61,11 @@ public class Powiadomienia{
 
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pendingIntent);
-
     }
 
     public void powiadomieniaZmieszane(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        /*ArrayList<String> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.SUCHE);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.MONTH, Calendar.JANUARY);
-        calendar.set(Calendar.YEAR, 2016);
-        calendar.set(Calendar.DAY_OF_MONTH, 2);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 10);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.AM_PM, Calendar.PM);*/
 
         SaveInt("Zmieszane", 1, context);
 
@@ -71,7 +74,6 @@ public class Powiadomienia{
 
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pendingIntent);
-
     }
 
     public void powiadomieniaDestroySuche(Context context) {
