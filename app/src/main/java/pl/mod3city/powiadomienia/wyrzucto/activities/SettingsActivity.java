@@ -30,6 +30,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import pl.mod3city.powiadomienia.wyrzucto.MokreReceiver;
+import pl.mod3city.powiadomienia.wyrzucto.Powiadomienia;
 import pl.mod3city.powiadomienia.wyrzucto.R;
 import pl.mod3city.powiadomienia.wyrzucto.SucheReceiver;
 import pl.mod3city.powiadomienia.wyrzucto.api.JSONParser;
@@ -51,12 +52,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */
-    SharedPreferences sharedPreferences;
+    //SharedPreferences sharedPreferences;
     SharedPreferences prefs;
     private PreferenceChangeListener mPreferenceListener = null; // Preference change listener
 
-    AlarmManager[] alarmManagerSuche=new AlarmManager[24];
-    ArrayList<PendingIntent> intentArraySuche = new ArrayList<PendingIntent>();
+    //AlarmManager[] alarmManagerSuche=new AlarmManager[24];
+    //ArrayList<PendingIntent> intentArraySuche = new ArrayList<PendingIntent>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         mPreferenceListener = new PreferenceChangeListener();
         prefs.registerOnSharedPreferenceChangeListener((SharedPreferences.OnSharedPreferenceChangeListener) mPreferenceListener);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        //sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     }
 
     private class PreferenceChangeListener implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -80,24 +81,22 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             }
             if(prefs.getBoolean("POWIADOMIENIA_WYWOZ_SUCHE",false) && key.equals("POWIADOMIENIA_WYWOZ_SUCHE")) {
-                powiadomieniaSuche();
+                Powiadomienia.getInstance().powiadomieniaSuche(getBaseContext());
             }
             else if(!prefs.getBoolean("POWIADOMIENIA_WYWOZ_SUCHE",false) && key.equals("POWIADOMIENIA_WYWOZ_SUCHE")) {
-                Intent dialogIntent = new Intent(getBaseContext(), SucheReceiver.class);
-                int iloscPowiadomienSuchych = sharedPreferences.getInt("Suche", 0);
-                powiadomieniaDestroy(dialogIntent, iloscPowiadomienSuchych);
+                Powiadomienia.getInstance().powiadomieniaDestroySuche(getBaseContext());
             }
             if(prefs.getBoolean("POWIADOMIENIA_WYWOZ_MOKRE",false) && key.equals("POWIADOMIENIA_WYWOZ_MOKRE")) {
-
+                Powiadomienia.getInstance().powiadomieniaMokre(getBaseContext());
             }
             else if(!prefs.getBoolean("POWIADOMIENIA_WYWOZ_MOKRE",false) && key.equals("POWIADOMIENIA_WYWOZ_MOKRE")) {
-
+                Powiadomienia.getInstance().powiadomieniaDestroyMokre(getBaseContext());
             }
             if(prefs.getBoolean("POWIADOMIENIA_WYWOZ_ZMIESZANE",false) && key.equals("POWIADOMIENIA_WYWOZ_ZMIESZANE")) {
-
+                Powiadomienia.getInstance().powiadomieniaZmieszane(getBaseContext());
             }
             else if(!prefs.getBoolean("POWIADOMIENIA_WYWOZ_ZMIESZANE",false) && key.equals("POWIADOMIENIA_WYWOZ_ZMIESZANE")) {
-
+                Powiadomienia.getInstance().powiadomieniaDestroyZmieszane(getBaseContext());
             }
             if(key.equals("POWIADOMIENIA_WYSTAWKI_CZAS")) {
                 //powiadomieniaSuche();
@@ -114,7 +113,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
     }
 
-    public void powiadomieniaSuche() {
+   /* public void powiadomieniaSuche() {
         ArrayList<String> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.SUCHE);
 
         Calendar calendar = Calendar.getInstance();
@@ -155,7 +154,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(key, value);
         editor.commit();
-    }
+    }*/
 
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         @Override
