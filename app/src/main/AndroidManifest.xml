@@ -36,6 +36,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".MoreInfoNotification"
+            android:label="More on Notyfication"
+            android:parentActivityName=".activities.MainTabActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainTabActivity"/>
+        </activity>
+
+
 
         <receiver android:name=".MokreReceiver"></receiver>
         <receiver android:name=".SucheReceiver"></receiver>
