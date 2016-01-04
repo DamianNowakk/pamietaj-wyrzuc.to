@@ -96,7 +96,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 Powiadomienia.getInstance().powiadomieniaDestroyZmieszane(getBaseContext());
             }
             if(key.equals("POWIADOMIENIA_WYSTAWKI_CZAS")) {
-                //powiadomieniaSuche();
+
             }
             if(key.equals("POWIADOMIENIA_SMIECI_SUCHE")) {
                 Powiadomienia.getInstance().powiadomieniaDestroySuche(getBaseContext());

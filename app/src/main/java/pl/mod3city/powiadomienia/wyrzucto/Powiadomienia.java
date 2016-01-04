@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -29,51 +30,62 @@ public class Powiadomienia{
 
     public void powiadomieniaSuche(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        //ArrayList<String> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.SUCHE);
+        String ileDniPrzedPowiadomicString = sharedPreferences.getString("POWIADOMIENIA_SMIECI_SUCHE", "0");
+        int ileDniPrzedPowiadomic =  Integer.parseInt(ileDniPrzedPowiadomicString);
+        //ArrayList<Integer> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.SUCHE);
 
-        Calendar calendar = Calendar.getInstance();
-        //calendar.set(Calendar.MONTH, Calendar.JANUARY);
-        calendar.set(Calendar.DAY_OF_WEEK, 2);
-        //calendar.set(Calendar.YEAR, 2016);
-        //calendar.set(Calendar.DAY_OF_MONTH, 2);
-        calendar.set(Calendar.HOUR_OF_DAY, 22);
-        calendar.set(Calendar.MINUTE, 19);
-        calendar.set(Calendar.SECOND, 0);
-        //calendar.set(Calendar.AM_PM, Calendar.PM);
-        calendar.setTimeInMillis(System.currentTimeMillis());
+        ArrayList<Integer> dni = new ArrayList<Integer>();
+        dni.add(3);
+        dni.add(5);
 
-        SaveInt("Suche", 1, context);
+        SaveInt("Suche", dni.size(), context);
+        for(int i=0; i < dni.size(); i++) {
+            Calendar calendar = rozpoczeciePowiadomienia(dni.get(i), ileDniPrzedPowiadomic);
 
-        Intent dialogIntent = new Intent(context, SucheReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idSuche+0, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
+            Intent dialogIntent = new Intent(context, SucheReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idSuche + i, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
 
-        alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 5000, pendingIntent);
+            alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),  AlarmManager.INTERVAL_DAY *7, pendingIntent);
+        }
     }
 
     public void powiadomieniaMokre(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String ileDniPrzedPowiadomicString = sharedPreferences.getString("POWIADOMIENIA_SMIECI_MOKRE", "0");
+        int ileDniPrzedPowiadomic =  Integer.parseInt(ileDniPrzedPowiadomicString);
+        //ArrayList<Integer> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.SUCHE);
+        ArrayList<Integer> dni = new ArrayList<Integer>(); //tymczasowa
 
-        SaveInt("Mokre", 1, context);
+        SaveInt("Mokre", dni.size(), context);
+        for(int i=0; i < dni.size(); i++) {
+            Calendar calendar = rozpoczeciePowiadomienia(dni.get(i), ileDniPrzedPowiadomic);
 
-        Intent dialogIntent = new Intent(context, MokreReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idMokre+0, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
+            Intent dialogIntent = new Intent(context, MokreReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idMokre + i, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
 
-        alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pendingIntent);
+            alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY *7, pendingIntent);
+        }
     }
 
     public void powiadomieniaZmieszane(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String ileDniPrzedPowiadomicString = sharedPreferences.getString("POWIADOMIENIA_SMIECI_ZMIESZANE", "0");
+        int ileDniPrzedPowiadomic =  Integer.parseInt(ileDniPrzedPowiadomicString);
+        //ArrayList<Integer> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.SUCHE);
+        ArrayList<Integer> dni = new ArrayList<Integer>(); //tymczasowa
 
+        SaveInt("Zmieszane",  dni.size(), context);
+        for(int i=0; i < dni.size(); i++) {
+            Calendar calendar = rozpoczeciePowiadomienia(dni.get(i), ileDniPrzedPowiadomic);
 
-        SaveInt("Zmieszane", 1, context);
+            Intent dialogIntent = new Intent(context, ZmieszaneReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idZmieszane + i, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
 
-        Intent dialogIntent = new Intent(context, ZmieszaneReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idZmieszane+0, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
-
-        alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pendingIntent);
+            alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY *7, pendingIntent);
+        }
     }
 
     public void powiadomieniaDestroySuche(Context context) {
@@ -114,5 +126,29 @@ public class Powiadomienia{
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(key, value);
         editor.commit();
+    }
+
+    public Calendar rozpoczeciePowiadomienia(int dzienTygodnia, int ileDniPrzedPowiadomic)
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+
+        if(dzienTygodnia == calendar.get(Calendar.DAY_OF_WEEK))
+        {
+            calendar.add(Calendar.DATE, 7);
+            calendar.add(Calendar.DATE, -ileDniPrzedPowiadomic);
+        }
+        else
+        {
+            while(dzienTygodnia != calendar.get(Calendar.DAY_OF_WEEK))
+            {
+                calendar.add(Calendar.DATE, 1);
+            }
+            calendar.add(Calendar.DATE, -ileDniPrzedPowiadomic);
+        }
+        calendar.set(Calendar.HOUR_OF_DAY, 6);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        return calendar;
     }
 }
