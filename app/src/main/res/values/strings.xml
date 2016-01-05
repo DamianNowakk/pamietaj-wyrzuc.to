@@ -83,8 +83,6 @@
 
     <string name="pref_title_czas_przed_wywozem_suchych">Okres przed wywozem suchych</string>
     <string-array name="pref_czas_przed_wywozem_suchych_title">
-        <item>7 dni wcześniej</item>
-        <item>6 dni wcześniej</item>
         <item>5 dni wcześniej</item>
         <item>4 dni wcześniej</item>
         <item>2 dni wcześniej</item>
@@ -92,8 +90,6 @@
         <item>W dzień wystawki</item>
     </string-array>
     <string-array name="pref_czas_przed_wywozem_suchych_values">
-        <item>7</item>
-        <item>6</item>
         <item>5</item>
         <item>4</item>
         <item>2</item>

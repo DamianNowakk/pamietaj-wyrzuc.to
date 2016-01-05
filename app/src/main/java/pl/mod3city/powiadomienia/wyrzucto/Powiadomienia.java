@@ -133,19 +133,17 @@ public class Powiadomienia{
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
 
-        if(dzienTygodnia == calendar.get(Calendar.DAY_OF_WEEK))
+
+        while(dzienTygodnia != calendar.get(Calendar.DAY_OF_WEEK))
+        {
+            calendar.add(Calendar.DATE, 1);
+        }
+        calendar.add(Calendar.DATE, -ileDniPrzedPowiadomic);
+        if(calendar.getTimeInMillis() < System.currentTimeMillis())
         {
             calendar.add(Calendar.DATE, 7);
-            calendar.add(Calendar.DATE, -ileDniPrzedPowiadomic);
         }
-        else
-        {
-            while(dzienTygodnia != calendar.get(Calendar.DAY_OF_WEEK))
-            {
-                calendar.add(Calendar.DATE, 1);
-            }
-            calendar.add(Calendar.DATE, -ileDniPrzedPowiadomic);
-        }
+
         calendar.set(Calendar.HOUR_OF_DAY, 6);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
