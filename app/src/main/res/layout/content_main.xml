@@ -12,9 +12,10 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="pl.mod3city.powiadomienia.wyrzucto.MainActivity"
     tools:showIn="@layout/activity_main"
-    android:background="#0ab334"
+    android:background="#ffffff"
     android:weightSum="1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:baselineAligned="false">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -53,11 +54,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Odbiór w każdy"
                     android:id="@+id/infoOdbior"
                     android:textAlignment="center"
-                    android:textColor="#ffffff" />
+                    android:typeface="serif"
+                    android:textColor="#212121" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -66,7 +68,9 @@
                     android:text="@string/brakDanych"
                     android:id="@+id/odbiorMokreKazdy"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"
+                    android:textColor="#727272"
+                    android:typeface="normal" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -75,8 +79,9 @@
                     android:text="Następne"
                     android:id="@+id/infoNastepne"
                     android:textAlignment="center"
-                    android:textColor="#ffffff"
-                    android:layout_marginTop="20dp" />
+                    android:textColor="#212121"
+                    android:layout_marginTop="20dp"
+                    android:typeface="serif" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -85,7 +90,8 @@
                     android:text="@string/brakDanych"
                     android:id="@+id/odbiorMokreNastepne"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"
+                    android:textColor="#727272" />
 
             </LinearLayout>
         </TableRow>
@@ -93,7 +99,7 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="#B6B6B6"/>
 
 
             <TableRow
@@ -132,7 +138,8 @@
                     android:text="Odbiór w każdy"
                     android:id="@+id/infoOdbior2"
                     android:textAlignment="center"
-                    android:textColor="#ffffff" />
+                    android:textColor="#212121"
+                    android:typeface="serif" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -141,7 +148,8 @@
                     android:text="@string/brakDanych"
                     android:id="@+id/odbiorSucheKazdy"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"
+                    android:textColor="#727272" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -150,8 +158,9 @@
                     android:text="Następne"
                     android:id="@+id/infoNastepne2"
                     android:textAlignment="center"
-                    android:textColor="#ffffff"
-                    android:layout_marginTop="30dp" />
+                    android:textColor="#212121"
+                    android:layout_marginTop="30dp"
+                    android:typeface="serif" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -160,14 +169,15 @@
                     android:text="@string/brakDanych"
                     android:id="@+id/odbiorSucheNastepne"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"
+                    android:textColor="#727272" />
             </LinearLayout>
         </TableRow>
 
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="#B6B6B6"/>
 
             <TableRow
                 android:orientation="horizontal"
@@ -182,7 +192,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="150dp"
                     android:id="@+id/imageView3"
-                    android:src="@drawable/ic_zmieszane_text"
+                    android:src="@drawable/ic_zmieszne"
                     android:longClickable="false"
                     android:cropToPadding="false"
                     android:contextClickable="false"
@@ -205,7 +215,8 @@
                         android:text="Odbiór w każdy"
                         android:id="@+id/textView"
                         android:textAlignment="center"
-                        android:textColor="#ffffff" />
+                        android:textColor="#212121"
+                        android:typeface="serif" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -214,7 +225,8 @@
                         android:text="@string/brakDanych"
                         android:id="@+id/odbiorZmieszaneKazdy"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="10dp"
+                        android:textColor="#727272" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -223,8 +235,9 @@
                         android:text="Następne"
                         android:id="@+id/textView3"
                         android:textAlignment="center"
-                        android:textColor="#ffffff"
-                        android:layout_marginTop="30dp" />
+                        android:textColor="#212121"
+                        android:layout_marginTop="30dp"
+                        android:typeface="serif" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -233,7 +246,8 @@
                         android:text="@string/brakDanych"
                         android:id="@+id/odbiorZmieszaneNastepne"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp" />
+                        android:layout_marginTop="10dp"
+                        android:textColor="#727272" />
                 </LinearLayout>
             </TableRow>
         </TableLayout>

@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".fragments.WystawkiFragment"
-    android:background="#0ab334"
+    android:background="#ffffff"
     android:weightSum="1"
     android:orientation="vertical">
     <ScrollView
@@ -41,7 +41,8 @@
                     android:text="Wystawki"
                     android:id="@+id/infoOdbior"
                     android:textAlignment="center"
-                    android:textColor="#ffffff" />
+                    android:textColor="#212121"
+                    android:typeface="serif" />
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -57,7 +58,8 @@
                         android:text="Najbliższa"
                         android:id="@+id/Wystawka"
                         android:textAlignment="center"
-                        android:textColor="#ffffff" />
+                        android:textColor="#212121"
+                        android:typeface="serif" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -67,7 +69,9 @@
                         android:id="@+id/najblizszaWystawka"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp" />
+                        android:layout_marginBottom="10dp"
+                        android:typeface="sans"
+                        android:textColor="#727272" />
 
 
 
@@ -77,7 +81,7 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="#B6B6B6"/>
 
             </TableLayout>
             <TableLayout
@@ -101,7 +105,9 @@ Na przykład: stoły, szafy, krzesła, sofy, dywany, wózki dziecięce, meterace
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-                        android:layout_marginBottom="10dp" />
+                        android:layout_marginBottom="10dp"
+                        android:textColor="#727272"
+                        android:typeface="sans" />
 
 
                 </TableRow>
@@ -127,7 +133,8 @@ Na przykład: stoły, szafy, krzesła, sofy, dywany, wózki dziecięce, meterace
                         android:text="Pamiętaj!"
                         android:id="@+id/infoOdbiaaaaaor"
                         android:textAlignment="center"
-                        android:textColor="#ffffff" />
+                        android:textColor="#212121"
+                        android:typeface="serif" />
 
 
                 </TableRow>
@@ -135,7 +142,7 @@ Na przykład: stoły, szafy, krzesła, sofy, dywany, wózki dziecięce, meterace
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="@android:color/darker_gray"/>
+                    android:background="#B6B6B6"/>
             </TableLayout>
             <TableLayout
                 android:layout_width="match_parent"
@@ -155,7 +162,9 @@ Na przykład: stoły, szafy, krzesła, sofy, dywany, wózki dziecięce, meterace
                         android:id="@+id/infoWystaaaaawka"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="20dp"
-                        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle" />
+                        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                        android:textColor="#727272"
+                        android:typeface="sans" />
 
 
                 </TableRow>
