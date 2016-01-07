@@ -53,7 +53,15 @@ public class JSONParser {
             for(int i=0; i<licznik; i++){
                 tabelaDni[i] = tab[i];
             }
-
+            if(!listaMokrych.isEmpty()){
+                listaMokrych.clear();
+            }
+            if(!listaSuchych.isEmpty()){
+                listaSuchych.clear();
+            }
+            if(!listaZmieszanych.isEmpty()){
+                listaZmieszanych.clear();
+            }
             String suche = new String();
             String mokre = new String();
             String zmieszane = new String();
@@ -97,6 +105,7 @@ public class JSONParser {
         String suche = new String();
         String mokre = new String();
         String zmieszane = new String();
+
 
         TextView mokreKazdy = (TextView) view.findViewById(R.id.odbiorMokreKazdy);
         TextView mokreNastepne = (TextView) view.findViewById(R.id.odbiorMokreNastepne);
