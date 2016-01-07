@@ -234,7 +234,15 @@ public class JSONParser {
             dayOfWeekNow = dayOfWeekNow % 8;
             for(int i=0; i<tab.length; i++) {
                 if(dayOfWeekNow == tab[i]){
-                    return zamianaDniaInt(tab[i]);
+                    int dayNow = calendar.get(Calendar.DAY_OF_WEEK);
+                    if(dayNow == tab[i])
+                        return "Dzisiaj";
+                    else if(dayNow!=7 && dayNow+1 == tab[i])
+                        return "Jutro";
+                    else if(dayNow==7 && tab[i] == 1)
+                        return "Jutro";
+                    else
+                        return zamianaDniaInt(tab[i]);
                 }
             }
             dayOfWeekNow++;
