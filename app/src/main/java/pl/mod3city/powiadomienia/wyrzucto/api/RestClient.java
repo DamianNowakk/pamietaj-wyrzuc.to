@@ -236,8 +236,9 @@ public class RestClient{
         }
 
         String ulica = sharedPref.getString("ULICA_NAZWA", "Akwenowa");
-        String filterUlica = new String("{\"Ulica_nazwa_skrócona\":\"");
-        filterUlica +=  ulica + "\"}";
+        String filterUlica = new String("{\"Ulica\":\"");
+        filterUlica +=  ulica.toUpperCase() + " \"}";
+
 
         params.put("filters", filterUlica);
 

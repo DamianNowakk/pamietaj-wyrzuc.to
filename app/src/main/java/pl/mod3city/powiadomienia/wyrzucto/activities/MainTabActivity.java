@@ -117,7 +117,7 @@ public class MainTabActivity extends AppCompatActivity {
                         }
                     }, getBaseContext());
 
-                 /*   //Wystawki
+                   //Wystawki
                     RestClient.getInstance().pobierzJsonaWystawki(new JsonResponse() {
                         //Dzięki temu pieknemu zabiegowi, po pobraniu danych z Resta zostanie wywowołana poniższa metoda
                         @Override
@@ -126,7 +126,7 @@ public class MainTabActivity extends AppCompatActivity {
                             Log.i("mainActivity", response.toString());
                             //Wywołanie parsowania
 
-                            JSONParser parser = new JSONParser();
+                            //JSONParser parser = new JSONParser();
 
                             if (success) {
                                 //Nowe parsowanie
@@ -135,15 +135,9 @@ public class MainTabActivity extends AppCompatActivity {
                                 //Serwer zwrócił błąd
                                 Snackbar.make(view, "Brak danych do pobrania dla wystawek. Sprawdź nazwę ulicy w ustawieniach.", Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();
-                                 *//*
-                                 CharSequence text1 = "Brak danych do pobrania. Sprawdź nazwę ulicy w ustawieniach.";
-                                int duration2 = Toast.LENGTH_LONG;
-                                Toast brakDanych = Toast.makeText(context, text1, duration2);
-                                brakDanych.show();
-                                *//*
                             }
                         }
-                    }, getBaseContext());*/
+                    }, getBaseContext());
                 }
             }
         });

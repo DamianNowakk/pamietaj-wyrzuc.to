@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import pl.mod3city.powiadomienia.wyrzucto.api.JSONParser;
 import pl.mod3city.powiadomienia.wyrzucto.R;
+import pl.mod3city.powiadomienia.wyrzucto.res.rodzajSmieci;
 
 
 public class GlownyFragment extends Fragment {
