@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import pl.mod3city.powiadomienia.wyrzucto.R;
+import pl.mod3city.powiadomienia.wyrzucto.api.JSONParser;
 
 
 /**
@@ -25,6 +26,8 @@ public class WystawkiFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_wystawki,container,false);
+        JSONParser.getInstance().wyswietlanieDni(getContext(), rootView);
         return inflater.inflate(R.layout.fragment_wystawki, container, false);
     }
 

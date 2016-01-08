@@ -115,9 +115,11 @@ public class JSONParser {
             for (int i = 0; i < arr.length(); i++) {
                 if (arr.getJSONObject(i).getString("key").equals("Dzień_odbioru")) {
                     datyOdbioru = arr.getJSONObject(i).getString("value");
+                    break;
                 }
             }
-            datyOdbioru.replace(':', '\n');
+
+            datyOdbioru = datyOdbioru.replace(':', '\n');
 
             File fileWystawki = new File(context.getFilesDir(), "wystawki.txt");
             PrintWriter wystawkiZapis = new PrintWriter(fileWystawki);
@@ -135,9 +137,6 @@ public class JSONParser {
         String suche = new String();
         String mokre = new String();
         String zmieszane = new String();
-        String wystawki = new String();
-
-
 
         TextView mokreKazdy = (TextView) view.findViewById(R.id.odbiorMokreKazdy);
         TextView mokreNastepne = (TextView) view.findViewById(R.id.odbiorMokreNastepne);
@@ -148,7 +147,7 @@ public class JSONParser {
         TextView zmieszaneKazdy = (TextView) view.findViewById(R.id.odbiorZmieszaneKazdy);
         TextView zmieszaneNastepne = (TextView) view.findViewById(R.id.odbiorZmieszaneNastepne);
 
-        TextView wystawkaNastepne = (TextView) view.findViewById(R.id.najblizszaWystawka);
+
 
         try {
             File fileMokre = new File(context.getFilesDir(), "mokre.txt");
@@ -205,22 +204,6 @@ public class JSONParser {
             }
 
 
-            File fileWystawki = new File(context.getFilesDir(), "wystawki.txt");
-            Scanner wystawkiSkaner = new Scanner(fileWystawki);
-            while(wystawkiSkaner.hasNext()){
-                String dzien = wystawkiSkaner.next();
-                wystawki += dzien;
-                wystawki += " ";
-                listaWystawek.add(dzien);
-            }
-            if(!wystawki.isEmpty()){
-                wystawkaNastepne.setText(najblizszaWystawka(listaWystawek));
-            }
-            else{
-                wystawkaNastepne.setText("Brak danych");
-            }
-
-
         }catch(Exception e){
             Log.i("blad", e.toString());
         }
@@ -228,6 +211,29 @@ public class JSONParser {
 
 
 
+    }
+
+    public void wyswietlanieWystawek(Context context,View view){
+        TextView wystawkaNastepne = (TextView) view.findViewById(R.id.najblizszaWystawka);
+
+        String wystawki = new String();
+        try {
+            File fileWystawki = new File(context.getFilesDir(), "wystawki.txt");
+            Scanner wystawkiSkaner = new Scanner(fileWystawki);
+            while (wystawkiSkaner.hasNext()) {
+                String dzien = wystawkiSkaner.next(":");
+                wystawki += dzien;
+                wystawki += " ";
+                listaWystawek.add(dzien);
+            }
+            if (!wystawki.isEmpty()) {
+                wystawkaNastepne.setText(najblizszaWystawka(listaWystawek));
+            } else {
+                wystawkaNastepne.setText("Brak danych");
+            }
+        }catch (Exception e){
+            Log.i("blad", e.toString());
+        }
     }
 
     public String najblizszaWystawka(ArrayList<String> lista){
