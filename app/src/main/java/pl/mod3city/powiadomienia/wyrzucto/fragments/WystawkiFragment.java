@@ -27,8 +27,8 @@ public class WystawkiFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_wystawki,container,false);
-        JSONParser.getInstance().wyswietlanieDni(getContext(), rootView);
-        return inflater.inflate(R.layout.fragment_wystawki, container, false);
+        JSONParser.getInstance().wyswietlanieWystawek(getContext(), rootView);
+        return rootView;
     }
 
 }

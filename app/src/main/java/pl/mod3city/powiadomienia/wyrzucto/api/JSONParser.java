@@ -221,7 +221,7 @@ public class JSONParser {
             File fileWystawki = new File(context.getFilesDir(), "wystawki.txt");
             Scanner wystawkiSkaner = new Scanner(fileWystawki);
             while (wystawkiSkaner.hasNext()) {
-                String dzien = wystawkiSkaner.next(":");
+                String dzien = wystawkiSkaner.next(Character.toString(':'));
                 wystawki += dzien;
                 wystawki += " ";
                 listaWystawek.add(dzien);
