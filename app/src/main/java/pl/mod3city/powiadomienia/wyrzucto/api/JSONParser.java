@@ -119,6 +119,10 @@ public class JSONParser {
                 }
             }
 
+            for(int i=0; i<datyOdbioru.length(); i++){
+                
+            }
+
             datyOdbioru = datyOdbioru.replace(':', '\n');
 
             File fileWystawki = new File(context.getFilesDir(), "wystawki.txt");
@@ -221,7 +225,7 @@ public class JSONParser {
             File fileWystawki = new File(context.getFilesDir(), "wystawki.txt");
             Scanner wystawkiSkaner = new Scanner(fileWystawki);
             while (wystawkiSkaner.hasNext()) {
-                String dzien = wystawkiSkaner.next(Character.toString(':'));
+                String dzien = wystawkiSkaner.next(String.valueOf(':'));
                 wystawki += dzien;
                 wystawki += " ";
                 listaWystawek.add(dzien);
