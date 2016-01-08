@@ -198,7 +198,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="150dp"
                     android:id="@+id/imageView3"
-                    android:src="@mipmap/ic_mokre"
+                    android:src="@mipmap/ic_zmieszane"
                     android:longClickable="false"
                     android:cropToPadding="false"
                     android:contextClickable="false"
