@@ -164,8 +164,8 @@ public class JSONParser {
                 mokreNastepne.setText(najblizszyDzien(listaMokrych));
             }
             else{
-                mokreKazdy.setText(" ");
-                mokreNastepne.setText(" ");
+                mokreKazdy.setText("Brak danych");
+                mokreNastepne.setText("Brak danych");
             }
 
 
@@ -182,8 +182,8 @@ public class JSONParser {
                 sucheNastepne.setText(najblizszyDzien(listaSuchych));
             }
             else{
-                sucheKazdy.setText(" ");
-                sucheNastepne.setText(" ");
+                sucheKazdy.setText("Brak danych");
+                sucheNastepne.setText("Brak danych");
             }
 
 
@@ -217,7 +217,7 @@ public class JSONParser {
                 wystawkaNastepne.setText(najblizszaWystawka(listaWystawek));
             }
             else{
-                wystawkaNastepne.setText(" ");
+                wystawkaNastepne.setText("Brak danych");
             }
 
 
