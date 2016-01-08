@@ -29,6 +29,7 @@ public class JSONParser {
     private ArrayList<String> listaSuchych = new ArrayList<String>();
     private ArrayList<String> listaMokrych = new ArrayList<String>();
     private ArrayList<String> listaZmieszanych = new ArrayList<String>();
+    private ArrayList<String> listaWystawek = new ArrayList<String>();
 
     JSONParser (){
     }
@@ -64,6 +65,9 @@ public class JSONParser {
             }
             if(!listaZmieszanych.isEmpty()){
                 listaZmieszanych.clear();
+            }
+            if(!listaWystawek.isEmpty()){
+                listaWystawek.clear();
             }
             String suche = new String();
             String mokre = new String();
@@ -105,7 +109,25 @@ public class JSONParser {
     }
 
     public void parsowanieWystawek(Context context, JSONObject response) {
+        try {
+            JSONArray arr = response.getJSONObject("results").getJSONArray("properties");
+            String datyOdbioru= new String();
+            for (int i = 0; i < arr.length(); i++) {
+                if (arr.getJSONObject(i).getString("key").equals("Dzień_odbioru")) {
+                    datyOdbioru = arr.getJSONObject(i).getString("value");
+                }
+            }
+            datyOdbioru.replace(':', '\n');
 
+            File fileWystawki = new File(context.getFilesDir(), "wystawki.txt");
+            PrintWriter wystawkiZapis = new PrintWriter(fileWystawki);
+            wystawkiZapis.print(datyOdbioru);
+            wystawkiZapis.close();
+
+
+        }catch (Exception e){
+            Log.i("blad",e.toString());
+        }
 
     }
 
@@ -113,6 +135,7 @@ public class JSONParser {
         String suche = new String();
         String mokre = new String();
         String zmieszane = new String();
+        String wystawki = new String();
 
 
 
@@ -125,6 +148,8 @@ public class JSONParser {
         TextView zmieszaneKazdy = (TextView) view.findViewById(R.id.odbiorZmieszaneKazdy);
         TextView zmieszaneNastepne = (TextView) view.findViewById(R.id.odbiorZmieszaneNastepne);
 
+        TextView wystawkaNastepne = (TextView) view.findViewById(R.id.najblizszaWystawka);
+
         try {
             File fileMokre = new File(context.getFilesDir(), "mokre.txt");
             Scanner mokreSkaner = new Scanner(fileMokre);
@@ -134,8 +159,15 @@ public class JSONParser {
                 mokre += " ";
                 listaMokrych.add(dzien);
             }
-            mokreKazdy.setText(mokre);
-            mokreNastepne.setText(najblizszyDzien(listaMokrych));
+            if(!mokre.isEmpty()){
+                mokreKazdy.setText(mokre);
+                mokreNastepne.setText(najblizszyDzien(listaMokrych));
+            }
+            else{
+                mokreKazdy.setText(" ");
+                mokreNastepne.setText(" ");
+            }
+
 
             File fileSuche = new File(context.getFilesDir(), "suche.txt");
             Scanner sucheSkaner = new Scanner(fileSuche);
@@ -145,8 +177,15 @@ public class JSONParser {
                 suche += " ";
                 listaSuchych.add(dzien);
             }
-            sucheKazdy.setText(suche);
-            sucheNastepne.setText(najblizszyDzien(listaSuchych));
+            if(!suche.isEmpty()){
+                sucheKazdy.setText(suche);
+                sucheNastepne.setText(najblizszyDzien(listaSuchych));
+            }
+            else{
+                sucheKazdy.setText(" ");
+                sucheNastepne.setText(" ");
+            }
+
 
             File fileZmieszane = new File(context.getFilesDir(), "zmieszane.txt");
             Scanner zmieszaneSkaner = new Scanner(fileZmieszane);
@@ -156,8 +195,30 @@ public class JSONParser {
                 zmieszane += " ";
                 listaZmieszanych.add(dzien);
             }
-            zmieszaneKazdy.setText(zmieszane);
-            zmieszaneNastepne.setText(najblizszyDzien(listaZmieszanych));
+            if(!zmieszane.isEmpty()){
+                zmieszaneKazdy.setText(zmieszane);
+                zmieszaneNastepne.setText(najblizszyDzien(listaZmieszanych));
+            }
+            else{
+                zmieszaneKazdy.setText(" ");
+                zmieszaneNastepne.setText(" ");
+            }
+
+
+            File fileWystawki = new File(context.getFilesDir(), "wystawki.txt");
+            Scanner wystawkiSkaner = new Scanner(fileWystawki);
+            while(wystawkiSkaner.hasNext()){
+                String dzien = wystawkiSkaner.next();
+                wystawki += dzien;
+                wystawki += " ";
+                listaWystawek.add(dzien);
+            }
+            if(!wystawki.isEmpty()){
+                wystawkaNastepne.setText(najblizszaWystawka(listaWystawek));
+            }
+            else{
+                wystawkaNastepne.setText(" ");
+            }
 
 
         }catch(Exception e){
@@ -169,6 +230,9 @@ public class JSONParser {
 
     }
 
+    public String najblizszaWystawka(ArrayList<String> lista){
+        return lista.get(0);
+    }
     public String zamianaDnia(String dzien){
         if(dzien.equals("Pn"))
             return "Poniedziałek";

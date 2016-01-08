@@ -128,7 +128,7 @@ public class MainTabActivity extends AppCompatActivity {
                             Log.i("mainActivity", response.toString());
 
                             if (success) {
-                                JSONParser.getInstance().parsowanieOdpadow(context, response);
+                                JSONParser.getInstance().parsowanieWystawek(context, response);
                                 Fragment currentFragment = mSectionsPagerAdapter.getItem(0);
                                 FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
                                 tr.detach(currentFragment);
