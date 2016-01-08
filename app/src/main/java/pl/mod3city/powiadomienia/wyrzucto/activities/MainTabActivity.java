@@ -93,7 +93,8 @@ public class MainTabActivity extends AppCompatActivity {
                 if (!isConnected) {
                     Snackbar.make(view, "Brak połączenia z internetem", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                } else {
+                }
+                else {
                     //Po naciśnięciu różowego przycisku odświeżane są dane BIHAPI - zwykłe śmieci
                     RestClient.getInstance().pobierzJsonaOdpadyMokreSucheZmieszaneDanaUlica(new JsonResponse() {
                         //Dzięki temu pieknemu zabiegowi, po pobraniu danych z Resta zostanie wywowołana poniższa metoda
@@ -103,7 +104,7 @@ public class MainTabActivity extends AppCompatActivity {
                             Log.i("mainActivity", response.toString());
                             //Wywołanie parsowania
                             if (success) {
-                                JSONParser.getInstance().parseJSONtoArray(context, response);
+                                JSONParser.getInstance().parsowanieOdpadow(context, response);
                                 //Przeładowanie widoku po pobraniu danych z BIHAPI
                                 Fragment currentFragment = mSectionsPagerAdapter.getItem(0);
                                 FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
@@ -125,14 +126,16 @@ public class MainTabActivity extends AppCompatActivity {
                         public void onJsonResponse(boolean success, JSONObject response) {
                             //Tu możemy parsować Json lub przekazać go do klasy JsonParser do dalszej obróbki
                             Log.i("mainActivity", response.toString());
-                            //Wywołanie parsowania
-
-                            //JSONParser parser = new JSONParser();
 
                             if (success) {
-                                //Nowe parsowanie
-
-                            } else {
+                                JSONParser.getInstance().parsowanieOdpadow(context, response);
+                                Fragment currentFragment = mSectionsPagerAdapter.getItem(0);
+                                FragmentTransaction tr = getSupportFragmentManager().beginTransaction();
+                                tr.detach(currentFragment);
+                                tr.attach(currentFragment);
+                                tr.commit();
+                            }
+                            else {
                                 //Serwer zwrócił błąd
                                 Snackbar.make(view, "Brak danych do pobrania dla wystawek. Sprawdź nazwę ulicy w ustawieniach.", Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();

@@ -40,7 +40,7 @@ public class JSONParser {
         return ourInstance;
     }
 
-    public void parseJSONtoArray(Context context, JSONObject response) {
+    public void parsowanieOdpadow(Context context, JSONObject response) {
 
         try {
             JSONArray arr = response.getJSONObject("results").getJSONArray("properties");
@@ -101,6 +101,11 @@ public class JSONParser {
         } catch (Exception e) {
             Log.i("blad",e.toString());
         }
+
+    }
+
+    public void parsowanieWystawek(Context context, JSONObject response) {
+
 
     }
 
