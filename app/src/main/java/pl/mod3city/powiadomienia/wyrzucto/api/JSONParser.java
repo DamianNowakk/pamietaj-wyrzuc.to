@@ -2,7 +2,10 @@ package pl.mod3city.powiadomienia.wyrzucto.api;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -105,6 +108,7 @@ public class JSONParser {
         String suche = new String();
         String mokre = new String();
         String zmieszane = new String();
+
 
 
         TextView mokreKazdy = (TextView) view.findViewById(R.id.odbiorMokreKazdy);

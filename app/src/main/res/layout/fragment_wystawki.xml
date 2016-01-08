@@ -92,20 +92,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.24"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Wszelkiego rodzaju odpady, które ze względu na duże rozmiary i/lub wagę nie mieszczą się do pojemnika na pozostałe śmieci, mogą być utylizowane jako odpady wielkogabarytowe.
-
-Na przykład: stoły, szafy, krzesła, sofy, dywany, wózki dziecięce, meterace, pierzyny, sieci na pranie, rowery, zabawki dużych rozmiarów etc. "
+                        android:text="Wszelkiego rodzaju odpady, które ze względu na duże rozmiary i/lub wagę nie mieszczą się do pojemnika na pozostałe śmieci, mogą być utylizowane jako odpady wielkogabarytowe.  Na przykład: stoły, szafy, krzesła, sofy, dywany, wózki dziecięce, meterace, pierzyny, sieci na pranie, rowery, zabawki dużych rozmiarów etc. "
                         android:id="@+id/infoWystawka"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp"
                         style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-                        android:layout_marginBottom="10dp"
                         android:textColor="#727272"
                         android:typeface="sans" />
 
@@ -134,7 +131,8 @@ Na przykład: stoły, szafy, krzesła, sofy, dywany, wózki dziecięce, meterace
                         android:id="@+id/infoOdbiaaaaaor"
                         android:textAlignment="center"
                         android:textColor="#212121"
-                        android:typeface="serif" />
+                        android:typeface="serif"
+                        android:layout_gravity="center" />
 
 
                 </TableRow>
@@ -152,7 +150,8 @@ Na przykład: stoły, szafy, krzesła, sofy, dywany, wózki dziecięce, meterace
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.24"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -160,11 +159,12 @@ Na przykład: stoły, szafy, krzesła, sofy, dywany, wózki dziecięce, meterace
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Do odpadów wielkogabarytowych nie należą wszelkiego rodzaju części budowlane i sanitarne takie jak deski drewniane, belki, panele, ramy okienne, drzwi, płoty, wanny, umywalki, muszle toaletowe lub spłuczki, grzejniki, płytki, rolety jak również części samochodowe, motorowery, kosiarki spalinowe, odpady remontowe, odpady ogrodowe, worki na śmieci lub kartony z odpadami domowymi. "
                         android:id="@+id/infoWystaaaaawka"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
                         style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
                         android:textColor="#727272"
-                        android:typeface="sans" />
+                        android:typeface="sans"
+                        android:allowUndo="false"
+                        android:enabled="false" />
 
 
                 </TableRow>

@@ -24,7 +24,8 @@
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/glownaTablica">
 
             <TableRow
             android:orientation="horizontal"
@@ -37,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
                 android:id="@+id/imageView"
-                android:src="@drawable/ic_mokre_icon"
+                android:src="@mipmap/ic_mokre"
                 android:layout_weight="0.40"
                 android:adjustViewBounds="true"
                 android:baselineAlignBottom="false"
@@ -80,7 +81,7 @@
                     android:id="@+id/infoNastepne"
                     android:textAlignment="center"
                     android:textColor="#212121"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:typeface="serif" />
 
                 <TextView
@@ -94,7 +95,12 @@
                     android:textColor="#727272" />
 
             </LinearLayout>
-        </TableRow>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></LinearLayout>
+            </TableRow>
 
             <View
                 android:layout_width="wrap_content"
@@ -115,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:id="@+id/imageView2"
-                android:src="@drawable/ic_suche_icon"
+                android:src="@mipmap/ic_suche"
                 android:layout_weight="0.40"
                 android:longClickable="false"
                 android:cropToPadding="false"
@@ -159,7 +165,7 @@
                     android:id="@+id/infoNastepne2"
                     android:textAlignment="center"
                     android:textColor="#212121"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
                     android:typeface="serif" />
 
                 <TextView
@@ -192,7 +198,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="150dp"
                     android:id="@+id/imageView3"
-                    android:src="@drawable/ic_zmieszne"
+                    android:src="@mipmap/ic_zmieszane"
                     android:longClickable="false"
                     android:cropToPadding="false"
                     android:contextClickable="false"
@@ -236,7 +242,7 @@
                         android:id="@+id/textView3"
                         android:textAlignment="center"
                         android:textColor="#212121"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="10dp"
                         android:typeface="serif" />
 
                     <TextView
@@ -250,6 +256,7 @@
                         android:textColor="#727272" />
                 </LinearLayout>
             </TableRow>
+
         </TableLayout>
     </ScrollView>
 
