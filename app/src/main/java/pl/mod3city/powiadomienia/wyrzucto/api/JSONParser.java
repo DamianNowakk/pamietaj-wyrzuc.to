@@ -263,10 +263,16 @@ public class JSONParser {
             dni[i] = Integer.parseInt(lista.get(i).substring(0,2));
         }
 
+        /*
         for(int i=0; i<lista.size(); i++){
             miesiace[i] = Integer.parseInt(lista.get(i).substring(2));
             miesiace[i]--;
         }
+        */
+        miesiace[0] = 0;
+        miesiace[1] = 4;
+        miesiace[2] = 7;
+        miesiace[3] = 11;
 
         while(true){
             while(miesiac<13){
@@ -275,7 +281,11 @@ public class JSONParser {
                         if(miesiace[i] == miesiac){
                             for(int j=0; j<dni.length; j++){
                                 if(dni[j] == dzien){
-                                    String zwrot = dzien + "." + (miesiac+1);
+                                    String zwrot;
+                                    if(miesiac<10)
+                                        zwrot = dzien + "." + "0" + (miesiac+1);
+                                    else
+                                        zwrot = dzien + "." + (miesiac+1);
                                     return zwrot;
                                 }
                             }
