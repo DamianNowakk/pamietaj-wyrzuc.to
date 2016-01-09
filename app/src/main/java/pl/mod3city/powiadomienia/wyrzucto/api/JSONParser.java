@@ -119,8 +119,15 @@ public class JSONParser {
                 }
             }
 
+            String tmp = new String();
             for(int i=0; i<datyOdbioru.length(); i++){
-                
+                String znak = datyOdbioru.substring(i,i+1);
+                if(znak.equals(':')){
+                    tmp+='\n';
+                }
+                else{
+                    tmp+=znak;
+                }
             }
 
             datyOdbioru = datyOdbioru.replace(':', '\n');
@@ -225,7 +232,7 @@ public class JSONParser {
             File fileWystawki = new File(context.getFilesDir(), "wystawki.txt");
             Scanner wystawkiSkaner = new Scanner(fileWystawki);
             while (wystawkiSkaner.hasNext()) {
-                String dzien = wystawkiSkaner.next(String.valueOf(':'));
+                String dzien = wystawkiSkaner.next();
                 wystawki += dzien;
                 wystawki += " ";
                 listaWystawek.add(dzien);
@@ -241,7 +248,46 @@ public class JSONParser {
     }
 
     public String najblizszaWystawka(ArrayList<String> lista){
-        return lista.get(0);
+        Date dateNow = new Date();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateNow);
+
+        int dzien = calendar.get(Calendar.DATE);
+        int miesiac = calendar.get(Calendar.MONTH);
+
+        int[] dni = new int[lista.size()];
+        int[] miesiace = new int[lista.size()];
+
+        for(int i=0; i<lista.size(); i++){
+            dni[i] = Integer.parseInt(lista.get(i).substring(0,2));
+        }
+
+        for(int i=0; i<lista.size(); i++){
+            miesiace[i] = Integer.parseInt(lista.get(i).substring(2));
+            miesiace[i]--;
+        }
+
+        while(true){
+            while(miesiac<13){
+                while(dzien<32){
+                    for(int i=0; i<miesiace.length; i++){
+                        if(miesiace[i] == miesiac){
+                            for(int j=0; j<dni.length; j++){
+                                if(dni[j] == dzien){
+                                    String zwrot = dzien + "." + (miesiac+1);
+                                    return zwrot;
+                                }
+                            }
+                        }
+                    }
+                    dzien++;
+                }
+                dzien = dzien % 32;
+                miesiac++;
+            }
+            miesiac = miesiac%13;
+        }
     }
     public String zamianaDnia(String dzien){
         if(dzien.equals("Pn"))
