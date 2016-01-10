@@ -83,7 +83,7 @@ public class Powiadomienia{
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idZmieszane + i, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
 
             alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY *7, pendingIntent);
+            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY * 7, pendingIntent);
         }
         dni.clear();
     }
@@ -93,25 +93,31 @@ public class Powiadomienia{
         String ileDniPrzedPowiadomicString = sharedPreferences.getString("POWIADOMIENIA_WYSTAWKI_CZAS", "0");
         int ileDniPrzedPowiadomic =  Integer.parseInt(ileDniPrzedPowiadomicString);
         ArrayList<String> dni = JSONParser.getInstance().najblizszeWystawki();
-        ArrayList<String> podzial = new ArrayList<String>();
-        SaveInt("Wystawki",  dni.size(), context);
-        for(int i=0; i < dni.size(); i++) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(System.currentTimeMillis());
-            calendar.set(Calendar.DATE, 0);
-            calendar.set(Calendar.MONTH, 0);
-            //calendar.set(Calendar.YEAR, 0);
-            calendar.set(Calendar.HOUR_OF_DAY, 6);
-            calendar.set(Calendar.MINUTE, 0);
-            calendar.set(Calendar.SECOND, 0);
+        int iloscPowiadomienWystawki = sharedPreferences.getInt("Wystawki", 0);
+        if(iloscPowiadomienWystawki == 0) {
+            SaveInt("Wystawki", dni.size(), context);
+            for (int i = 0; i < dni.size(); i++) {
+                String[] podzial = dni.get(i).split("\\.");
+                //podzial[0]; //dni
+                //podzial[1]; //miesiace
 
-            Intent dialogIntent = new Intent(context, ZmieszaneReceiver.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idZmieszane + i, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(System.currentTimeMillis());
+                calendar.set(Calendar.DATE, Integer.parseInt(podzial[0]));
+                calendar.set(Calendar.MONTH, Integer.parseInt(podzial[1])-1);
+                //calendar.set(Calendar.YEAR, 0);
+                calendar.set(Calendar.HOUR_OF_DAY, 6);
+                calendar.set(Calendar.MINUTE, 0);
+                calendar.set(Calendar.SECOND, 0);
 
-            alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY *7, pendingIntent);
+                Intent dialogIntent = new Intent(context, WystawkiReceiver.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idWystawki + i, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
+
+                alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            }
+            dni.clear();
         }
-        dni.clear();
     }
 
     public void powiadomieniaDestroySuche(Context context) {
@@ -140,7 +146,7 @@ public class Powiadomienia{
 
     public void powiadomieniaDestroyWystawki(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        Intent dialogIntent = new Intent(context, ZmieszaneReceiver.class);
+        Intent dialogIntent = new Intent(context, WystawkiReceiver.class);
         int iloscPowiadomienWystawki = sharedPreferences.getInt("Wystawki", 0);
         powiadomieniaDestroy(context, dialogIntent, iloscPowiadomienWystawki, idWystawki);
         SaveInt("Wystawki", 0, context);
