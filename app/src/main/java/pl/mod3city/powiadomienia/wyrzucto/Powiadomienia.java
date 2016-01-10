@@ -100,7 +100,6 @@ public class Powiadomienia{
                 String[] podzial = dni.get(i).split("\\.");
                 //podzial[0]; //dni
                 //podzial[1]; //miesiace
-
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(System.currentTimeMillis());
                 calendar.set(Calendar.DATE, Integer.parseInt(podzial[0]));

@@ -72,10 +72,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
 
             if(prefs.getBoolean("POWIADOMIENIA_WYSTAWKI",false) && key.equals("POWIADOMIENIA_WYSTAWKI")) {
-
+                Powiadomienia.getInstance().powiadomieniaWystawki(getBaseContext());
             }
             else if(!prefs.getBoolean("POWIADOMIENIA_WYSTAWKI",false) && key.equals("POWIADOMIENIA_WYSTAWKI")){
-
+                Powiadomienia.getInstance().powiadomieniaDestroyWystawki(getBaseContext());
             }
             if(prefs.getBoolean("POWIADOMIENIA_WYWOZ_SUCHE",false) && key.equals("POWIADOMIENIA_WYWOZ_SUCHE")) {
                 Powiadomienia.getInstance().powiadomieniaSuche(getBaseContext());
@@ -96,7 +96,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 Powiadomienia.getInstance().powiadomieniaDestroyZmieszane(getBaseContext());
             }
             if(key.equals("POWIADOMIENIA_WYSTAWKI_CZAS")) {
-
+                Powiadomienia.getInstance().powiadomieniaDestroyWystawki(getBaseContext());
+                Powiadomienia.getInstance().powiadomieniaWystawki(getBaseContext());
             }
             if(key.equals("POWIADOMIENIA_SMIECI_SUCHE")) {
                 Powiadomienia.getInstance().powiadomieniaDestroySuche(getBaseContext());

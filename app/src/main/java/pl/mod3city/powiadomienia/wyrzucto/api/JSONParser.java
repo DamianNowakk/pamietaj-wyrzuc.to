@@ -422,6 +422,11 @@ public class JSONParser {
 
     public ArrayList<String> najblizszeWystawki()
     {
-        return listaWystawek;
+        ArrayList<String> lista = new ArrayList<String>();
+        for (int i = 0; i < listaWystawek.size(); i++)
+        {
+            lista.add(listaWystawek.get(i));
+        }
+        return lista;
     }
 }
