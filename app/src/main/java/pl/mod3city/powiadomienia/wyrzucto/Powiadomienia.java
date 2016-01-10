@@ -21,6 +21,7 @@ public class Powiadomienia{
     private static final int idSuche = 100;
     private static final int idMokre = 200;
     private static final int idZmieszane = 300;
+    private static final int idWystawki = 400;
 
     AlarmManager alarmManager;
 
@@ -87,6 +88,32 @@ public class Powiadomienia{
         dni.clear();
     }
 
+    public void powiadomieniaWystawki(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String ileDniPrzedPowiadomicString = sharedPreferences.getString("POWIADOMIENIA_WYSTAWKI_CZAS", "0");
+        int ileDniPrzedPowiadomic =  Integer.parseInt(ileDniPrzedPowiadomicString);
+        ArrayList<String> dni = JSONParser.getInstance().najblizszeWystawki();
+        ArrayList<String> podzial = new ArrayList<String>();
+        SaveInt("Wystawki",  dni.size(), context);
+        for(int i=0; i < dni.size(); i++) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            calendar.set(Calendar.DATE, 0);
+            calendar.set(Calendar.MONTH, 0);
+            //calendar.set(Calendar.YEAR, 0);
+            calendar.set(Calendar.HOUR_OF_DAY, 6);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+
+            Intent dialogIntent = new Intent(context, ZmieszaneReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idZmieszane + i, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
+
+            alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY *7, pendingIntent);
+        }
+        dni.clear();
+    }
+
     public void powiadomieniaDestroySuche(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         Intent dialogIntent = new Intent(context, SucheReceiver.class);
@@ -109,6 +136,14 @@ public class Powiadomienia{
         int iloscPowiadomienZmieszane = sharedPreferences.getInt("Zmieszane", 0);
         powiadomieniaDestroy(context, dialogIntent, iloscPowiadomienZmieszane, idZmieszane);
         SaveInt("Zmieszane", 0, context);
+    }
+
+    public void powiadomieniaDestroyWystawki(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        Intent dialogIntent = new Intent(context, ZmieszaneReceiver.class);
+        int iloscPowiadomienWystawki = sharedPreferences.getInt("Wystawki", 0);
+        powiadomieniaDestroy(context, dialogIntent, iloscPowiadomienWystawki, idWystawki);
+        SaveInt("Wystawki", 0, context);
     }
 
     private void powiadomieniaDestroy(Context context, Intent dialogIntent,int iloscPowiadomien, int id) {

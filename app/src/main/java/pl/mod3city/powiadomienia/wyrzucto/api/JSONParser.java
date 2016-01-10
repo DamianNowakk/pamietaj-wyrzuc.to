@@ -406,7 +406,6 @@ public class JSONParser {
             {
                 dni.add(zamianaDniaInt(listaMokrych.get(i)));
             }
-
         }else if(rodz == rodzajSmieci.SUCHE){
             for (int i = 0; i < listaSuchych.size(); i++)
             {
@@ -419,8 +418,10 @@ public class JSONParser {
             }
         }
         return dni;
-
     }
 
-
+    public ArrayList<String> najblizszeWystawki()
+    {
+        return listaWystawek;
+    }
 }

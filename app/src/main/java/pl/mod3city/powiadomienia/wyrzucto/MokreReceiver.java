@@ -21,7 +21,7 @@ public class MokreReceiver extends BroadcastReceiver {
     public void createNotification(Context context, String msg, String msgText, String msgAlert)
     {
         PendingIntent notificIntent = PendingIntent.getActivity(context, 0,
-                new Intent(context, MoreInfoNotification.class), 0);
+                new Intent(context, MainTabActivity.class), 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                 .setContentTitle(msg)

@@ -10,12 +10,12 @@ import android.support.v4.app.NotificationCompat;
 import pl.mod3city.powiadomienia.wyrzucto.activities.MainTabActivity;
 
 /**
- * Created by Baniek on 2016-01-02.
+ * Created by Baniek on 2016-01-10.
  */
-public class SucheReceiver extends BroadcastReceiver {
+public class WystawkiReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        createNotification(context,"Wyrzuc.to", "suche", "Przypomnienie");
+        createNotification(context,"Wyrzuc.to", "Wystawka", "Przypomnienie");
     }
 
     public void createNotification(Context context, String msg, String msgText, String msgAlert)
@@ -27,7 +27,7 @@ public class SucheReceiver extends BroadcastReceiver {
                 .setContentTitle(msg)
                 .setContentText(msgText)
                 .setTicker(msgAlert)
-                .setSmallIcon(R.drawable.ic_suche_icon);
+                .setSmallIcon(R.mipmap.ic_launcher_icon);
 
         mBuilder.setContentIntent(notificIntent);
         mBuilder.setDefaults(NotificationCompat.DEFAULT_SOUND);

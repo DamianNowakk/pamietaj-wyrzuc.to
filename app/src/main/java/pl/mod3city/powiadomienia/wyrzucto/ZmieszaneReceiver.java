@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
+import pl.mod3city.powiadomienia.wyrzucto.activities.MainTabActivity;
+
 /**
  * Created by Baniek on 2016-01-02.
  */
@@ -19,7 +21,7 @@ public class ZmieszaneReceiver extends BroadcastReceiver {
     public void createNotification(Context context, String msg, String msgText, String msgAlert)
     {
         PendingIntent notificIntent = PendingIntent.getActivity(context, 0,
-                new Intent(context, MoreInfoNotification.class), 0);
+                new Intent(context, MainTabActivity.class), 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                 .setContentTitle(msg)
