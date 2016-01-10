@@ -108,6 +108,7 @@ public class Powiadomienia{
                 calendar.set(Calendar.HOUR_OF_DAY, 6);
                 calendar.set(Calendar.MINUTE, 0);
                 calendar.set(Calendar.SECOND, 0);
+                calendar.add(Calendar.DATE, -ileDniPrzedPowiadomic);
 
                 Intent dialogIntent = new Intent(context, WystawkiReceiver.class);
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idWystawki + i, dialogIntent, PendingIntent.FLAG_UPDATE_CURRENT | Intent.FILL_IN_DATA);
