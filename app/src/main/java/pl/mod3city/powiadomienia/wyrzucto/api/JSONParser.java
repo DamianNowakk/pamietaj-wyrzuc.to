@@ -31,6 +31,7 @@ public class JSONParser {
     private ArrayList<String> listaZmieszanych = new ArrayList<String>();
     private ArrayList<String> listaWystawek = new ArrayList<String>();
 
+
     JSONParser (){
     }
 
@@ -397,15 +398,27 @@ public class JSONParser {
             return najblizszyDzien(listaZmieszanych);
         }
     }
-    public ArrayList<String> najblizszeDniSmieci(rodzajSmieci rodz) {
-    if(rodz == rodzajSmieci.MOKRE){
-        return listaMokrych;
+    public ArrayList<Integer> najblizszeDniSmieci(rodzajSmieci rodz) {
 
-    }else if(rodz == rodzajSmieci.SUCHE){
-        return listaSuchych;
-    }else{
-        return listaZmieszanych;
-    }
+        ArrayList<Integer> dni = new ArrayList<Integer>();
+        if(rodz == rodzajSmieci.MOKRE){
+            for (int i = 0; i < listaMokrych.size(); i++)
+            {
+                dni.add(zamianaDniaInt(listaMokrych.get(i)));
+            }
+
+        }else if(rodz == rodzajSmieci.SUCHE){
+            for (int i = 0; i < listaSuchych.size(); i++)
+            {
+                dni.add(zamianaDniaInt(listaSuchych.get(i)));
+            }
+        }else{
+            for (int i = 0; i < listaZmieszanych.size(); i++)
+            {
+                dni.add(zamianaDniaInt(listaZmieszanych.get(i)));
+            }
+        }
+        return dni;
 
     }
 

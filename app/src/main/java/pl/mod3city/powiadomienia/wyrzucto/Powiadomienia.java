@@ -10,6 +10,9 @@ import android.preference.PreferenceManager;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import pl.mod3city.powiadomienia.wyrzucto.api.JSONParser;
+import pl.mod3city.powiadomienia.wyrzucto.res.rodzajSmieci;
+
 /**
  * Created by Baniek on 2016-01-03.
  */
@@ -32,12 +35,7 @@ public class Powiadomienia{
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String ileDniPrzedPowiadomicString = sharedPreferences.getString("POWIADOMIENIA_SMIECI_SUCHE", "0");
         int ileDniPrzedPowiadomic =  Integer.parseInt(ileDniPrzedPowiadomicString);
-        //ArrayList<Integer> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.SUCHE);
-
-        ArrayList<Integer> dni = new ArrayList<Integer>();
-        dni.add(3);
-        dni.add(5);
-
+        ArrayList<Integer> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.SUCHE);
         SaveInt("Suche", dni.size(), context);
         for(int i=0; i < dni.size(); i++) {
             Calendar calendar = rozpoczeciePowiadomienia(dni.get(i), ileDniPrzedPowiadomic);
@@ -48,14 +46,14 @@ public class Powiadomienia{
             alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),  AlarmManager.INTERVAL_DAY *7, pendingIntent);
         }
+        dni.clear();
     }
 
     public void powiadomieniaMokre(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String ileDniPrzedPowiadomicString = sharedPreferences.getString("POWIADOMIENIA_SMIECI_MOKRE", "0");
         int ileDniPrzedPowiadomic =  Integer.parseInt(ileDniPrzedPowiadomicString);
-        //ArrayList<Integer> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.SUCHE);
-        ArrayList<Integer> dni = new ArrayList<Integer>(); //tymczasowa
+        ArrayList<Integer> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.MOKRE);
 
         SaveInt("Mokre", dni.size(), context);
         for(int i=0; i < dni.size(); i++) {
@@ -67,14 +65,14 @@ public class Powiadomienia{
             alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY *7, pendingIntent);
         }
+        dni.clear();
     }
 
     public void powiadomieniaZmieszane(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String ileDniPrzedPowiadomicString = sharedPreferences.getString("POWIADOMIENIA_SMIECI_ZMIESZANE", "0");
         int ileDniPrzedPowiadomic =  Integer.parseInt(ileDniPrzedPowiadomicString);
-        //ArrayList<Integer> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.SUCHE);
-        ArrayList<Integer> dni = new ArrayList<Integer>(); //tymczasowa
+        ArrayList<Integer> dni = JSONParser.getInstance().najblizszeDniSmieci(rodzajSmieci.ZMIESZANE);
 
         SaveInt("Zmieszane",  dni.size(), context);
         for(int i=0; i < dni.size(); i++) {
@@ -86,6 +84,7 @@ public class Powiadomienia{
             alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY *7, pendingIntent);
         }
+        dni.clear();
     }
 
     public void powiadomieniaDestroySuche(Context context) {
