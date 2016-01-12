@@ -2,8 +2,6 @@ package pl.mod3city.powiadomienia.wyrzucto.activities;
 
 
 import android.annotation.TargetApi;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,16 +23,10 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-import pl.mod3city.powiadomienia.wyrzucto.MokreReceiver;
-import pl.mod3city.powiadomienia.wyrzucto.Powiadomienia;
+import pl.mod3city.powiadomienia.wyrzucto.BroadcastReceiver.Powiadomienia;
 import pl.mod3city.powiadomienia.wyrzucto.R;
-import pl.mod3city.powiadomienia.wyrzucto.SucheReceiver;
-import pl.mod3city.powiadomienia.wyrzucto.api.JSONParser;
-import pl.mod3city.powiadomienia.wyrzucto.res.rodzajSmieci;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -111,6 +103,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 Powiadomienia.getInstance().powiadomieniaDestroyZmieszane(getBaseContext());
                 Powiadomienia.getInstance().powiadomieniaZmieszane(getBaseContext());
             }
+           /* if(key.equals("ULICA_NAZWA")){
+                boolean czyJest = prefs.contains("Dzisiejsza_Data");
+
+                Date data = new Date(System.currentTimeMillis()-24*60*60*1000);
+                String dzisiejszaDataString = data.toString();
+
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("Dzisiejsza_Data", dzisiejszaDataString);
+                editor.commit();
+            }*/
         }
     }
 

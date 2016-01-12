@@ -111,6 +111,9 @@ public class JSONParser {
 
     public void parsowanieWystawek(Context context, JSONObject response) {
         try {
+            if(!listaWystawek.isEmpty()){
+                listaWystawek.clear();
+            }
             JSONArray arr = response.getJSONObject("results").getJSONArray("properties");
             String datyOdbioru= new String();
             for (int i = 0; i < arr.length(); i++) {
@@ -264,17 +267,11 @@ public class JSONParser {
             dni[i] = Integer.parseInt(lista.get(i).substring(0,2));
         }
 
-        /*
+
         for(int i=0; i<lista.size(); i++){
-            miesiace[i] = Integer.parseInt(lista.get(i).substring(2));
+            miesiace[i] = Integer.parseInt(lista.get(i).substring(3));
             miesiace[i]--;
         }
-        */
-        miesiace[0] = 0;
-        miesiace[1] = 4;
-        miesiace[2] = 7;
-        miesiace[3] = 11;
-
         while(true){
             while(miesiac<13){
                 while(dzien<32){

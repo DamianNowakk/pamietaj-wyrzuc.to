@@ -1,4 +1,4 @@
-package pl.mod3city.powiadomienia.wyrzucto;
+package pl.mod3city.powiadomienia.wyrzucto.BroadcastReceiver;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
+import pl.mod3city.powiadomienia.wyrzucto.R;
 import pl.mod3city.powiadomienia.wyrzucto.activities.MainTabActivity;
 
 /**
@@ -15,7 +16,7 @@ import pl.mod3city.powiadomienia.wyrzucto.activities.MainTabActivity;
 public class WystawkiReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        createNotification(context,"Wyrzuc.to", "Wystawka", "Przypomnienie");
+        createNotification(context,"Pamiętaj Wyrzuc.to", "Pamiętaj o wystawce.", "Przypomnienie");
     }
 
     public void createNotification(Context context, String msg, String msgText, String msgAlert)

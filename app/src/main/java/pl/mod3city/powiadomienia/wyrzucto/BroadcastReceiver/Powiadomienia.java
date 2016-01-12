@@ -1,4 +1,4 @@
-package pl.mod3city.powiadomienia.wyrzucto;
+package pl.mod3city.powiadomienia.wyrzucto.BroadcastReceiver;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;

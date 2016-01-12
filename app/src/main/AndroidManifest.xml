@@ -37,10 +37,10 @@
         </activity>
 
 
-        <receiver android:name=".MokreReceiver"></receiver>
-        <receiver android:name=".SucheReceiver"></receiver>
-        <receiver android:name=".ZmieszaneReceiver"></receiver>
-        <receiver android:name=".WystawkiReceiver"></receiver>
+        <receiver android:name=".BroadcastReceiver.MokreReceiver"></receiver>
+        <receiver android:name=".BroadcastReceiver.SucheReceiver"></receiver>
+        <receiver android:name=".BroadcastReceiver.ZmieszaneReceiver"></receiver>
+        <receiver android:name=".BroadcastReceiver.WystawkiReceiver"></receiver>
     </application>
 
 </manifest>

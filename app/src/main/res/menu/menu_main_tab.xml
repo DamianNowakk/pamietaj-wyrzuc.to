@@ -8,8 +8,8 @@
         android:title="@string/action_settings"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_favorite"
-        android:icon="@drawable/ic_location"
+        android:id="@+id/action_refresh"
+        android:icon="@mipmap/ic_refresh"
         android:title="Lokalizacja"
         app:showAsAction="ifRoom"/>
 

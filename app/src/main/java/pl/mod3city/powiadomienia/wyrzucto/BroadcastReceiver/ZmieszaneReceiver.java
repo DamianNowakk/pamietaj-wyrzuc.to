@@ -1,4 +1,4 @@
-package pl.mod3city.powiadomienia.wyrzucto;
+package pl.mod3city.powiadomienia.wyrzucto.BroadcastReceiver;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -7,15 +7,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 
+import pl.mod3city.powiadomienia.wyrzucto.R;
 import pl.mod3city.powiadomienia.wyrzucto.activities.MainTabActivity;
 
 /**
- * Created by Baniek on 2016-01-01.
+ * Created by Baniek on 2016-01-02.
  */
-public class MokreReceiver extends BroadcastReceiver {
+public class ZmieszaneReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        createNotification(context,"Wyrzuc.to", "mokre", "Przypomnienie");
+        createNotification(context,"Pamiętaj Wyrzuc.to", "Pamiętaj o wyrzuceniuh śmieci.", "Przypomnienie");
     }
 
     public void createNotification(Context context, String msg, String msgText, String msgAlert)
@@ -27,7 +28,7 @@ public class MokreReceiver extends BroadcastReceiver {
                 .setContentTitle(msg)
                 .setContentText(msgText)
                 .setTicker(msgAlert)
-                .setSmallIcon(R.drawable.ic_mokre_icon);
+                .setSmallIcon(R.drawable.ic_zmieszane_text);
 
         mBuilder.setContentIntent(notificIntent);
         mBuilder.setDefaults(NotificationCompat.DEFAULT_SOUND);
