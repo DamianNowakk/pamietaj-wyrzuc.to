@@ -1,7 +1,13 @@
 # README #
 
 This README would normally document whatever steps are necessary to get your application up and running.
+**
+Używamy camelCase**
 
+camelCase – system notacji ciągów tekstowych, w którym kolejne wyrazy pisane są łącznie, rozpoczynając każdy następny wielką literą (prócz pierwszego)[1]. Na przykład: foreColor, setConnection, isPaymentPosted. Zapis camelCase różni się od notacji PascalCase, tym że rozpoczyna się małą literą.
+
+
+*
 ### API ###
 Login do środowiska API dla zespołu: ciecimi
 Hatło: v78moUzE
@@ -11,7 +17,8 @@ Potwierdzamy możliwość korzystania z następujących API (zadeklarowanych w z
  
 Gdansk_harmonogram_odb_odpadow
 
-Gdansk_zuzyte_baterie
+Gdansk_zuzyte_baterie*
+
 
  
 
